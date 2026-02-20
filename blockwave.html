@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockvance - Digital Trading Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="left">
+
+        <h1>
+            Trade Your <br>
+            Crypto on <span>Blockvance</span> <br>
+            With Confidence
+        </h1>
+
+        <p>Signup & explore your next trading partner</p>
+
+        <button class="big-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+    </div>
+
+</section>
+
+<!-- TRUSTED BY THOUSANDS SECTION -->
+<section class="trusted-by-thousands">
+    <div class="container">
+        <h1>Trusted by Thousands</h1>
+        <div class="subtitle">Join a growing community of secure P2P traders</div>
+
+        <div class="stats">
+            <div class="stat">
+                <div id="userCount" class="stat-number blue">127,966,534</div>
+                <div class="stat-label">Users Trust Us</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number green">$60M+</div>
+                <div class="stat-label">Trading Volume</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number purple">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .trusted-by-thousands {
+        background: #000;
+        color: #fff;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .trusted-by-thousands .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .trusted-by-thousands h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+
+    .trusted-by-thousands .subtitle {
+        font-size: 22px;
+        color: #cfd8ff;
+        margin-bottom: 80px;
+    }
+
+    .trusted-by-thousands .stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .trusted-by-thousands .stat {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .trusted-by-thousands .stat-number {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .trusted-by-thousands .blue {
+        color: #2f6bff;
+    }
+
+    .trusted-by-thousands .green {
+        color: #4cff9a;
+    }
+
+    .trusted-by-thousands .purple {
+        color: #c77dff;
+    }
+
+    .trusted-by-thousands .stat-label {
+        font-size: 18px;
+        color: #cccccc;
+    }
+</style>
+
+<script>
+    let users = 289966534;
+    const userCountElement = document.getElementById("userCount");
+
+    function formatNumber(num) {
+        return num.toLocaleString();
+    }
+
+    setInterval(() => {
+        const increase = Math.floor(Math.random() * 50) + 1;
+        users += increase;
+        userCountElement.textContent = formatNumber(users);
+    }, 1000);
+</script>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">
+    <span>NEW!</span>
+    Blockvance to Launch MOON Deposit Contest with a Prize Pool of 10,000 USDT
+    <a href="#">More</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+
+        <div>
+            <div class="logo">BLOCV<span>ANCE</span></div>
+            <div class="tagline">DIGITAL TRADING PLATFORM</div>
+            <div class="description">
+                Your trusted digital trading platform
+            </div>
+        </div>
+
+        <div>
+            <h3>Platform</h3>
+            <ul>
+                <li>How It Works</li>
+                <li>Pricing</li>
+                <li>Security</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Resources</h3>
+            <ul>
+                <li>Learn</li>
+                <li>Support</li>
+                <li>About</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Legal</h3>
+            <ul>
+                <li>Terms of Service</li>
+                <li>Privacy Policy</li>
+                <li>Risk Disclosure</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="copyright">
+        © 2026 Blockvance. All rights reserved.
+    </div>
+</footer>
+
+<style>
+    /* TOP ANNOUNCEMENT BAR */
+    .announcement {
+        background: #1fa64a;
+        color: #fff;
+        text-align: center;
+        padding: 16px 10px;
+        font-size: 16px;
+    }
+
+    .announcement span {
+        background: #11893a;
+        padding: 5px 12px;
+        border-radius: 20px;
+        margin-right: 10px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .announcement a {
+        color: #ffffff;
+        text-decoration: underline;
+        margin-left: 10px;
+        font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+        padding: 80px 60px 30px;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 50px;
+    }
+
+    .logo {
+        font-size: 16px;
+        font-weight: bold;
+        color: #3b82ff;
+        margin-bottom: 10px;
+    }
+
+    .logo span {
+        color: #ffffff;
+    }
+
+    .tagline {
+        font-size: 14px;
+        color: #7fa7ff;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        color: #8a8a8a;
+        font-size: 16px;
+        max-width: 300px;
+    }
+
+    footer h3 {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+
+    footer ul {
+        list-style: none;
+    }
+
+    footer ul li {
+        margin-bottom: 14px;
+        color: #8a8a8a;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    footer ul li:hover {
+        color: #ffffff;
+    }
+
+    footer hr {
+        border: none;
+        border-top: 1px solid #1f1f1f;
+        margin: 50px 0 30px;
+    }
+
+    .copyright {
+        text-align: center;
+        color: #7a7a7a;
+        font-size: 15px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+</body>
+</html>

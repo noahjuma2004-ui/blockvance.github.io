@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYC Verification Form - Blockvance</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+}
+
+.logo h2 {
+    color: #3b82f6;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: #ccc;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    color: #3b82f6;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.signup {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.lang {
+    color: #aaa;
+}
+
+.container{
+    max-width:700px;
+    margin:60px auto;
+    padding:30px;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+h1{
+    font-size:36px;
+    margin-bottom:10px;
+    color: #60a5fa;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-bottom:30px;
+}
+
+.form-card{
+    background:linear-gradient(145deg,#1e293b,#111827);
+    padding:35px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:8px;
+    font-weight:bold;
+    color: #cfd8ff;
+}
+
+input, select{
+    width:100%;
+    padding:14px;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:#0f172a;
+    color:white;
+    font-size:15px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus{
+    outline:none;
+    border-color:#3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+button{
+    margin-top:30px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+    color:white;
+    font-size:18px;
+    font-weight: 600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:linear-gradient(90deg,#1d4ed8,#2563eb);
+}
+
+.success-message {
+    display: none;
+    background: #065f46;
+    color: #34d399;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media(max-width:768px){
+    .container{
+        margin:30px 15px;
+    }
+    header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-card {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="back-link" onclick="goBack()">← Back</div>
+    
+    <h1>KYC Identity Verification</h1>
+    <div class="subtitle">
+        Enter your details exactly as shown on your government-issued ID.
+    </div>
+
+    <div class="form-card">
+        <div class="success-message" id="successMessage">
+            ✓ Verification submitted successfully! Your account will be reviewed within 24 hours.
+        </div>
+
+        <form id="kycForm">
+
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="middleName">Middle Name</label>
+            <input type="text" id="middleName" name="middleName">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="idNumber">ID Number</label>
+            <input type="text" id="idNumber" name="idNumber" placeholder="Passport, Driver's License, etc." required>
+
+            <label for="countrySelect">Country (Excluding USA)</label>
+            <select id="countrySelect" name="country" required>
+                <option value="">Select your country</option>
+            </select>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <button type="submit">Submit Verification</button>
+
+        </form>
+    </div>
+</div>
+
+<script>
+const countries = [
+"Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Armenia",
+"Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados",
+"Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina",
+"Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia",
+"Cameroon","Canada","Cape Verde","Central African Republic","Chad","Chile",
+"China","Colombia","Comoros","Congo","Costa Rica","Croatia","Cuba","Cyprus",
+"Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic",
+"Ecuador","Egypt","El Salvador","Estonia","Eswatini","Ethiopia","Fiji",
+"Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece",
+"Grenada","Guatemala","Guinea","Guyana","Haiti","Honduras","Hungary","Iceland",
+"India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan",
+"Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon",
+"Lesotho","Liberia","Libya","Lithuania","Luxembourg","Madagascar","Malawi",
+"Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico",
+"Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar",
+"Namibia","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria",
+"North Korea","North Macedonia","Norway","Oman","Pakistan","Panama",
+"Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar",
+"Romania","Russia","Rwanda","Saudi Arabia","Senegal","Serbia","Singapore",
+"Slovakia","Slovenia","Somalia","South Africa","South Korea","Spain",
+"Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan",
+"Tanzania","Thailand","Togo","Trinidad and Tobago","Tunisia","Turkey",
+"Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay",
+"Uzbekistan","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
+];
+
+const select = document.getElementById("countrySelect");
+
+countries.sort().forEach(country=>{
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = country;
+    select.appendChild(option);
+});
+
+// Handle form submission
+document.getElementById('kycForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    // Get form values
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const idNumber = document.getElementById('idNumber').value;
+    const country = document.getElementById('countrySelect').value;
+    const dob = document.getElementById('dob').value;
+    
+    // Validate all required fields
+    if(!firstName || !lastName || !idNumber || !country || !dob){
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    // Hide form and show success message
+    document.querySelector('.form-card form').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'block';
+    
+    // Store verification data
+    localStorage.setItem('kycSubmitted', 'true');
+    localStorage.setItem('kycData', JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        idNumber: idNumber,
+        country: country,
+        dob: dob
+    }));
+    
+    // Redirect after 2 seconds to documents page
+    setTimeout(() => {
+        window.location.href = 'kyc-documents.html';
+    }, 2000);
+});
+
+function goBack(){
+    // Check if user is logged in
+    if(localStorage.getItem('loggedIn')){
+        window.location.href = 'dashboard.html';
+    } else {
+        window.location.href = 'verification.html';
+    }
+}
+</script>
+
+</body>
+</html>

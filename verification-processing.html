@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verification Submitted - Blockvance</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    overflow: hidden;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+}
+
+.logo h2 {
+    color: #3b82f6;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: #ccc;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    color: #3b82f6;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.signup {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.lang {
+    color: #aaa;
+}
+
+/* Main Container */
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Success Card */
+.success-card {
+    background: linear-gradient(145deg, #1e293b, #111827);
+    padding: 50px 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+h1 {
+    font-size: 32px;
+    color: #60a5fa;
+    margin: 20px 0;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Reviewing Section */
+.reviewing-section {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #334155;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.reviewing-text {
+    color: #cfd8ff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.progress-info {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Status Messages */
+.status-message {
+    display: none;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+.status-message.success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #22c55e;
+    display: none;
+}
+
+.status-message.failed {
+    background: rgba(248, 113, 113, 0.2);
+    border: 1px solid rgba(248, 113, 113, 0.5);
+    color: #f87171;
+    display: none;
+}
+
+.status-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Action Buttons */
+.action-section {
+    margin-top: 40px;
+}
+
+.action-section h3 {
+    color: #cfd8ff;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #1d4ed8, #2563eb);
+}
+
+.btn-secondary {
+    background: #334155;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+.btn-retry {
+    background: linear-gradient(90deg, #d97706, #f97316);
+    color: white;
+    display: none;
+}
+
+.btn-retry:hover {
+    background: linear-gradient(90deg, #b45309, #ea580c);
+}
+
+/* Info Messages */
+.info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.info-box p {
+    margin: 8px 0;
+    color: #cfd8ff;
+    font-size: 14px;
+}
+
+@media(max-width:768px){
+    .container {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+    header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .success-card {
+        padding: 30px 20px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="success-card">
+        <div class="success-icon" id="mainIcon">✓</div>
+
+        <h1 id="mainTitle">Thank You!</h1>
+        <div class="subtitle" id="mainSubtitle">
+            We have received your verification documents. Your information is being reviewed by our compliance team.
+        </div>
+
+        <!-- Reviewing Section -->
+        <div class="reviewing-section" id="reviewingSection">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+            <div class="reviewing-text">Reviewing Your Documents</div>
+            <div class="progress-info">Estimated time: 24-48 hours</div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="status-message success" id="successMessage">
+            <span class="status-icon">✓</span>
+            <span>Your identity has been verified successfully!</span>
+        </div>
+
+        <!-- Failed Message -->
+        <div class="status-message failed" id="failedMessage">
+            <span class="status-icon">⚠️</span>
+            <span id="failureReason">Verification failed. Please try again.</span>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box" id="infoBox">
+            <p><strong>What happens next?</strong></p>
+            <p>During this review process, our team will:</p>
+            <p>✓ Verify document authenticity<br>
+            ✓ Match your face with your ID<br>
+            ✓ Check against fraud databases<br>
+            ✓ Ensure documents haven't been previously verified</p>
+        </div>
+
+        <!-- Action Section -->
+        <div class="action-section">
+            <h3>Next Steps</h3>
+            <div class="button-group">
+                <button class="btn btn-primary" id="dashboardBtn" onclick="goToDashboard()">
+                    Go to Dashboard
+                </button>
+                <button class="btn btn-secondary" id="homeBtn" onclick="goHome()">
+                    Home
+                </button>
+                <button class="btn btn-retry" id="retryBtn" onclick="retryVerification()">
+                    ↻ Retry Verification
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Simulate verification process
+let verificationStatus = 'pending';
+
+function startVerification() {
+    // Simulate 5-8 second review time
+    const reviewTime = Math.random() * 3000 + 5000; // 5-8 seconds
+    
+    setTimeout(() => {
+        completeVerification();
+    }, reviewTime);
+}
+
+function completeVerification() {
+    // Randomly decide success or failure (70% success rate)
+    const isSuccess = Math.random() > 0.3; // 70% pass, 30% fail
+    
+    if (isSuccess) {
+        verifySuccess();
+    } else {
+        verifyFailed();
+    }
+}
+
+function verifySuccess() {
+    verificationStatus = 'verified';
+    
+    // Hide reviewing section
+    document.getElementById('reviewingSection').style.display = 'none';
+    
+    // Show success message
+    document.getElementById('successMessage').style.display = 'block';
+    
+    // Update main content
+    document.getElementById('mainTitle').textContent = 'Verification Successful!';
+    document.getElementById('mainSubtitle').textContent = 'Your identity has been verified. You now have full access to all Blockvance features.';
+    document.getElementById('mainIcon').innerHTML = '✓';
+    document.getElementById('mainIcon').style.color = '#22c55e';
+    
+    // Update info box
+    document.getElementById('infoBox').innerHTML = `
+        <p><strong>Account Verified!</strong></p>
+        <p>Your account status has been updated:</p>
+        <p>✓ Identity verified<br>
+        ✓ Full trading access enabled<br>
+        ✓ Higher withdrawal limits unlocked<br>
+        ✓ All premium features available</p>
+    `;
+    
+    // Update localStorage
+    localStorage.setItem('verificationStatus', 'verified');
+    localStorage.setItem('verificationDate', new Date().toISOString());
+    
+    // Hide retry button
+    document.getElementById('retryBtn').style.display = 'none';
+    document.getElementById('dashboardBtn').style.display = 'block';
+    document.getElementById('homeBtn').style.display = 'block';
+}
+
+function verifyFailed() {
+    verificationStatus = 'failed';
+    
+    // Hide reviewing section
+    document.getElementById('reviewingSection').style.display = 'none';
+    
+    // Determine failure reason
+    const reasons = [
+        'Face does not match the ID document.',
+        'Your ID appears to have been previously registered.',
+        'Document quality is too low. Please try with clearer photos.',
+        'Facial recognition could not match your identity.'
+    ];
+    const reason = reasons[Math.floor(Math.random() * reasons.length)];
+    
+    // Show failed message
+    document.getElementById('failedMessage').style.display = 'block';
+    document.getElementById('failureReason').textContent = reason;
+    
+    // Update main content
+    document.getElementById('mainTitle').textContent = 'Verification Failed';
+    document.getElementById('mainSubtitle').textContent = 'We were unable to verify your identity at this time. Please review the requirements and try again.';
+    document.getElementById('mainIcon').innerHTML = '⚠️';
+    document.getElementById('mainIcon').style.color = '#f87171';
+    
+    // Update info box
+    document.getElementById('infoBox').innerHTML = `
+        <p><strong>Verification could not be completed due to:</strong></p>
+        <p>${reason}</p>
+        <p><strong>To retry verification:</strong></p>
+        <p>✓ Ensure photos are clear and well-lit<br>
+        ✓ Face should directly face camera<br>
+        ✓ Remove any accessories covering your face<br>
+        ✓ Use original ID documents<br>
+        ✓ Use fresh, previously unused documents</p>
+        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(59, 130, 246, 0.3);">
+        <strong>Ready to retry?</strong><br>
+        Click the "Retry Verification" button below to start the process again with fresh documents.
+        </p>
+    `;
+    
+    // Show retry button
+    document.getElementById('retryBtn').style.display = 'block';
+    document.getElementById('dashboardBtn').style.display = 'none';
+    document.getElementById('homeBtn').style.display = 'block';
+    
+    // Update localStorage
+    localStorage.setItem('verificationStatus', 'failed');
+    localStorage.setItem('verificationFailReason', reason);
+}
+
+function retryVerification() {
+    // Clear previous verification data
+    localStorage.removeItem('verificationSubmission');
+    localStorage.removeItem('verificationStatus');
+    localStorage.removeItem('verificationFailReason');
+    localStorage.removeItem('kycSubmitted');
+    localStorage.removeItem('kycData');
+    
+    // Redirect back to KYC form to start fresh with new documents
+    window.location.href = 'kyc-form.html';
+}
+
+function goToDashboard() {
+    if (localStorage.getItem('loggedIn')) {
+        window.location.href = 'dashboard.html';
+    } else {
+        window.location.href = 'login.html';
+    }
+}
+
+function goHome() {
+    window.location.href = 'blockwave.html';
+}
+
+// Check verification submission on page load
+window.addEventListener('load', function() {
+    const submission = localStorage.getItem('verificationSubmission');
+    
+    if (!submission) {
+        // Redirect if no submission found
+        window.location.href = 'kyc-documents.html';
+        return;
+    }
+
+    // Start verification process
+    startVerification();
+});
+</script>
+
+</body>
+</html>

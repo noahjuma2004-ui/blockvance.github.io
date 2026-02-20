@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - Blockvance</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .trade-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #000;
+            padding: 20px;
+        }
+
+        .trade-container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .trade-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .trade-header h1 {
+            font-size: 48px;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+
+        .trade-header p {
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        .trade-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .trade-card {
+            background: linear-gradient(135deg, #1a1a1a, #0f1419);
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .trade-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .trade-card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .trade-card h2 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .trade-card p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .trade-card-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .trade-card-button:hover {
+            background: #2563eb;
+        }
+
+        .features {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+        }
+
+        .features h3 {
+            color: #3b82f6;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .features ul {
+            list-style: none;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .features li {
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #3eea92;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .trade-options {
+                grid-template-columns: 1fr;
+            }
+
+            .trade-header h1 {
+                font-size: 32px;
+            }
+
+            .trade-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li>AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<!-- TRADE PAGE -->
+<div class="trade-page">
+    <div class="trade-container">
+        <div class="back-link" onclick="window.location.href='blockwave.html'">← Back to Home</div>
+
+        <div class="trade-header">
+            <h1>Choose Your Trading Method</h1>
+            <p>Select the trading style that works best for you</p>
+        </div>
+
+        <div class="trade-options">
+            <!-- Spot Trading Card -->
+            <div class="trade-card" onclick="goToSpotTrading()">
+                <div class="trade-card-icon">📊</div>
+                <h2>Spot Trading</h2>
+                <p>Buy and sell cryptocurrencies at market prices with instant execution</p>
+                <button class="trade-card-button">Start Trading →</button>
+
+                <div class="features">
+                    <h3>FEATURES</h3>
+                    <ul>
+                        <li>Instant execution</li>
+                        <li>Market prices</li>
+                        <li>Advanced charts</li>
+                        <li>Low fees</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- P2P Trading Card -->
+            <div class="trade-card" onclick="goToP2PTrading()">
+                <div class="trade-card-icon">🤝</div>
+                <h2>P2P Trading</h2>
+                <p>Trade directly with other users for better rates and payment flexibility</p>
+                <button class="trade-card-button">Start Trading →</button>
+
+                <div class="features">
+                    <h3>FEATURES</h3>
+                    <ul>
+                        <li>Peer-to-peer</li>
+                        <li>Flexible prices</li>
+                        <li>Multiple payments</li>
+                        <li>Secure escrow</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToSpotTrading() {
+        alert('Redirecting to Spot Trading...');
+        // Navigate to spot trading page (to be created)
+        window.location.href = 'spot-trading.html';
+    }
+
+    function goToP2PTrading() {
+        // Navigate to P2P trading page (market.html)
+        window.location.href = 'market.html';
+    }
+</script>
+
+</body>
+</html>

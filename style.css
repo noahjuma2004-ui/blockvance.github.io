@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #000;
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+
+.logo h2 {
+    color: #3b82f6;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: #ccc;
+}
+
+nav ul li:hover {
+    color: #3b82f6;
+    cursor: pointer;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.signup {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+    min-height: 90vh;
+}
+
+/* LEFT SIDE */
+.left h1 {
+    font-size: 70px;
+    line-height: 1.1;
+}
+
+.left span {
+    color: #3b82f6;
+}
+
+.left p {
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 20px;
+}
+
+.big-signup {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.right {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+/* Glow Effect */
+.glow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(59,130,246,0.12), transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(59,130,246,0.08), transparent 20%);
+    filter: blur(40px);
+    z-index: -1;
+}
+
+/* Why Choose Section */
+.why-choose {
+    padding: 60px 20px;
+    text-align: center;
+    background: #000;
+}
+
+.why-choose h2 {
+    font-size: 45px;
+    font-weight: 700;
+    color: white;
+    margin: 0 auto 20px;
+
+    
+    
+}
+
+/* Ready to Start Section */
+.ready-to-start {
+    padding: 60px 20px;
+    text-align: center;
+    background: #000;
+}
+
+.ready-to-start h2 {
+    font-size: 55px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.ready-to-start p {
+    font-size: 18px;
+    color: #aaa;
+}
+
+.get-started {
+    margin-top: 25px;
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+
+    /* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ANNOUNCEMENT BAR */
+.announcement {
+  background-color: #000;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.announcement-content {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #fff;
+}
+
+.announcement-text {
+  background-color: #1faa59;
+  padding: 20px 30px;
+  border-radius: 12px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+}
+
+.new-badge {
+  background-color: #0d8a3e;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-right: 0;
+  font-size: 14px;
+  display: none;
+}
+
+.announcement-text a {
+  color: #fff;
+  margin-left: 10px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.main-footer {
+  background-color: #000;
+  padding: 70px 0 30px;
+  color: #aaa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-wrapper {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-col {
+  width: 22%;
+}
+
+.footer-col h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 14px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #6f86a6;
+  font-size: 17px;
+  transition: 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #1faa59;
+}
+
+/* BRAND SECTION */
+.brand {
+  text-align: left;
+}
+
+.brand h2 {
+  color: #2f80ff;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.brand .sub {
+  color: #2f80ff;
+  font-size: 12px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.brand .desc {
+  font-size: 18px;
+  color: #6f86a6;
+}
+
+/* DIVIDER */
+.divider {
+  width: 85%;
+  margin: 40px auto 20px;
+  border: 0;
+  border-top: 1px solid #222;
+}
+
+/* COPYRIGHT */
+.copyright {
+  text-align: center;
+  color: #6f86a6;
+  font-size: 18px;
+}
+}

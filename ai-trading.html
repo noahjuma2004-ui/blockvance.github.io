@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trading Bots - Blockvance</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+}
+
+.logo h2 {
+    color: #3b82f6;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: #ccc;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    color: #3b82f6;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.signup {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.lang {
+    color: #aaa;
+}
+
+/* HEADER */
+.header{
+    padding:40px;
+    background:linear-gradient(90deg,#1e293b,#312e81);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.header h1{
+    font-size:40px;
+    margin:10px 0 0 0;
+    color:#60a5fa;
+}
+.header p{
+    opacity:0.8;
+    margin: 10px 0 0 0;
+}
+.container{
+    padding:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+.card{
+    background:linear-gradient(180deg,#1e293b,#0f172a);
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+.card:hover{
+    transform:translateY(-5px);
+}
+.tag{
+    float:right;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+.low{background:#065f46;color:#34d399;}
+.medium{background:#78350f;color:#facc15;}
+.high{background:#7f1d1d;color:#f87171;}
+.extreme{background:#4c1d95;color:#c084fc;}
+.roi{
+    font-size:30px;
+    color:#4ade80;
+    margin:15px 0;
+}
+.details{
+    opacity:0.8;
+    font-size:14px;
+}
+button{
+    margin-top:20px;
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight: 600;
+}
+button:hover{
+    background:#1d4ed8;
+}
+.section-title{
+    padding:30px 40px 10px;
+    font-size:22px;
+    color:#93c5fd;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<div class="header">
+    <div class="back-link" onclick="window.location.href='blockwave.html'">← Back to Home</div>
+    <h1>AI Trading Bots</h1>
+    <p>Automated trading strategies powered by advanced AI algorithms</p>
+</div>
+
+<!-- LOW SECTION -->
+<div class="section-title">LOW RISK BOTS</div>
+<div class="container">
+
+<div class="card"><span class="tag low">LOW</span>
+<h3>Arbitrage Pro</h3>
+<p>Finds price differences across exchanges.</p>
+<div class="roi">24% / month</div>
+<div class="details">Min: $50 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag low">LOW</span>
+<h3>Market Guard</h3>
+<p>Market-making with stable liquidity spreads.</p>
+<div class="roi">26% / month</div>
+<div class="details">Min: $75 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag low">LOW</span>
+<h3>Balance Keeper</h3>
+<p>Maintains portfolio balance safely.</p>
+<div class="roi">25% / month</div>
+<div class="details">Min: $100 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag medium">MEDIUM</span>
+<h3>Reversion Smart</h3>
+<p>Trades overbought & oversold zones.</p>
+<div class="roi">29% / month</div>
+<div class="details">Min: $200 | Max: $100,000</div>
+<button>View Details</button></div>
+
+</div>
+
+<!-- MEDIUM SECTION -->
+<div class="section-title">MEDIUM RISK BOTS</div>
+<div class="container">
+
+<div class="card"><span class="tag medium">MEDIUM</span>
+<h3>Trend Rider</h3>
+<p>Captures strong momentum trends.</p>
+<div class="roi">35% / month</div>
+<div class="details">Min: $150 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag medium">MEDIUM</span>
+<h3>Breakout Hunter</h3>
+<p>Trades key breakout levels.</p>
+<div class="roi">38% / month</div>
+<div class="details">Min: $200 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag medium">MEDIUM</span>
+<h3>Volume Tracker</h3>
+<p>Uses volume spikes for entry timing.</p>
+<div class="roi">36% / month</div>
+<div class="details">Min: $175 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag medium">MEDIUM</span>
+<h3>Smart Swing AI</h3>
+<p>AI powered swing trading engine.</p>
+<div class="roi">40% / month</div>
+<div class="details">Min: $250 | Max: $100,000</div>
+<button>View Details</button></div>
+
+</div>
+
+<!-- HIGH SECTION -->
+<div class="section-title">HIGH RISK BOTS</div>
+<div class="container">
+
+<div class="card"><span class="tag high">HIGH</span>
+<h3>Leverage Storm</h3>
+<p>High leverage volatility trading.</p>
+<div class="roi">55% / month</div>
+<div class="details">Min: $500 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag high">HIGH</span>
+<h3>Flash Scalper X</h3>
+<p>Ultra-fast micro scalping.</p>
+<div class="roi">60% / month</div>
+<div class="details">Min: $750 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag high">HIGH</span>
+<h3>Quantum Spike</h3>
+<p>Detects explosive price spikes.</p>
+<div class="roi">65% / month</div>
+<div class="details">Min: $1000 | Max: $100,000</div>
+<button>View Details</button></div>
+
+<div class="card"><span class="tag high">HIGH</span>
+<h3>Momentum Fury</h3>
+<p>Advanced volatility engine.</p>
+<div class="roi">70% / month</div>
+<div class="details">Min: $1500 | Max: $100,000</div>
+<button>View Details</button></div>
+
+</div>
+
+<!-- POWERFUL AI SECTION -->
+<div class="section-title">POWERFUL AI AUTONOMOUS BOTS</div>
+<div class="container">
+
+<div class="card"><span class="tag extreme">EXTREME AI</span>
+<h3>NeuroTrader AI</h3>
+<p>Deep-learning predictive trading system.</p>
+<div class="roi">90% / month</div>
+<div class="details">Min: $2000 | Max: $100,000</div>
+<button>Activate AI</button></div>
+
+<div class="card"><span class="tag extreme">EXTREME AI</span>
+<h3>Omega Neural Engine</h3>
+<p>Self-learning autonomous trading AI.</p>
+<div class="roi">110% / month</div>
+<div class="details">Min: $2500 | Max: $100,000</div>
+<button>Activate AI</button></div>
+
+<div class="card"><span class="tag extreme">EXTREME AI</span>
+<h3>HyperBot Quantum</h3>
+<p>Quantum-driven AI trade execution.</p>
+<div class="roi">125% / month</div>
+<div class="details">Min: $3000 | Max: $100,000</div>
+<button>Activate AI</button></div>
+
+<div class="card"><span class="tag extreme">EXTREME AI</span>
+<h3>Singularity X</h3>
+<p>Next-gen AI fully automated hedge bot.</p>
+<div class="roi">150% / month</div>
+<div class="details">Min: $5000 | Max: $100,000</div>
+<button>Activate AI</button></div>
+
+</div>
+
+<script>
+    // Button click handlers
+    document.querySelectorAll('button:not(.login):not(.signup)').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (e.target.textContent.includes('View Details')) {
+                alert('Opening AI Bot details...');
+            } else if (e.target.textContent.includes('Activate AI')) {
+                alert('Activating AI Trading Bot...\nPlease log in to proceed.');
+                window.location.href = 'login.html';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

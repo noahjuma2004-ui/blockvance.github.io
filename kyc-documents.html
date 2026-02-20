@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Upload - KYC Verification - Blockvance</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+}
+
+.logo h2 {
+    color: #3b82f6;
+    margin: 0;
+}
+
+.logo span {
+    font-size: 11px;
+    color: #aaa;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: #ccc;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    color: #3b82f6;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.signup {
+    background: #3b82f6;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.lang {
+    color: #aaa;
+}
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:30px;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+h1{
+    font-size:36px;
+    margin-bottom:10px;
+    color: #60a5fa;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-bottom:40px;
+    font-size: 16px;
+}
+
+/* Info Card */
+.info-card{
+    background:linear-gradient(145deg,#1e293b,#111827);
+    padding:20px;
+    border-radius:12px;
+    border:1px solid rgba(59, 130, 246, 0.2);
+    margin-bottom:30px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.info-icon{
+    font-size:32px;
+}
+
+.info-text p {
+    margin: 5px 0;
+    color: #cfd8ff;
+}
+
+/* Document Upload Section */
+.upload-section{
+    background:linear-gradient(145deg,#1e293b,#111827);
+    padding:30px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.05);
+    margin-bottom:25px;
+}
+
+.upload-section h2 {
+    color: #60a5fa;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.document-icon {
+    font-size: 24px;
+}
+
+.upload-instructions{
+    background:rgba(59, 130, 246, 0.1);
+    padding:15px;
+    border-left:4px solid #3b82f6;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+.upload-instructions p {
+    margin: 8px 0;
+    color: #cfd8ff;
+    font-size: 14px;
+}
+
+.upload-instructions ul {
+    margin: 10px 0;
+    padding-left: 20px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.upload-instructions li {
+    margin: 5px 0;
+}
+
+/* File Input Area */
+.file-input-wrapper {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.file-label{
+    display:block;
+    padding:20px;
+    background:#0f172a;
+    border:2px dashed #3b82f6;
+    border-radius:10px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.file-label:hover{
+    background:rgba(59, 130, 246, 0.1);
+    border-color:#60a5fa;
+}
+
+.file-label span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.file-label p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+input[type="file"]{
+    display:none;
+}
+
+.file-name{
+    color:#22c55e;
+    font-size:14px;
+    margin-top:10px;
+}
+
+/* Buttons */
+.button-group{
+    display:flex;
+    gap:15px;
+    margin-top:40px;
+    justify-content:space-between;
+}
+
+.btn{
+    padding:16px 30px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn-back{
+    background:#334155;
+    color:white;
+    flex:1;
+}
+
+.btn-back:hover{
+    background:#475569;
+}
+
+.btn-submit{
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+    color:white;
+    flex:1;
+}
+
+.btn-submit:hover{
+    background:linear-gradient(90deg,#1d4ed8,#2563eb);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    background: #1e293b;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    color: white;
+}
+
+.modal-content h2 {
+    color: #60a5fa;
+    margin-top: 0;
+}
+
+.modal-content p {
+    color: #cfd8ff;
+    line-height: 1.6;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #3b82f6;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-confirm {
+    background: #3b82f6;
+    color: white;
+}
+
+.modal-confirm:hover {
+    background: #2563eb;
+}
+
+.modal-cancel {
+    background: #334155;
+    color: white;
+}
+
+.modal-cancel:hover {
+    background: #475569;
+}
+
+@media(max-width:768px){
+    .container{
+        margin:30px 15px;
+    }
+    header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .button-group {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="back-link" onclick="goBack()">← Back to Form</div>
+    
+    <h1>Document Upload & Verification</h1>
+    <div class="subtitle">
+        Upload clear photos of your identity documents and a recent selfie for verification
+    </div>
+
+    <!-- Information Card -->
+    <div class="info-card">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-text">
+            <p><strong>Important:</strong> All documents must be clear, valid, and not previously used for KYC verification.</p>
+            <p>Your face will be matched against your ID document using advanced facial recognition technology.</p>
+        </div>
+    </div>
+
+    <!-- Front ID Upload -->
+    <div class="upload-section">
+        <h2><span class="document-icon">🪪</span> Front ID Document</h2>
+        
+        <div class="upload-instructions">
+            <p><strong>Upload a clear photo of the front of your ID:</strong></p>
+            <ul>
+                <li>Ensure the entire document is visible and in focus</li>
+                <li>Good lighting is essential</li>
+                <li>Avoid glare or reflections</li>
+                <li>Accepted formats: JPG, PNG, PDF</li>
+                <li>Maximum file size: 10MB</li>
+            </ul>
+        </div>
+
+        <div class="file-input-wrapper">
+            <label for="frontId" class="file-label">
+                <span>📤</span>
+                <p>Click to upload or drag and drop</p>
+                <p style="font-size: 12px; opacity: 0.7;">JPG, PNG or PDF (Max 10MB)</p>
+            </label>
+            <input type="file" id="frontId" name="frontId" accept="image/*,.pdf" required>
+            <div class="file-name" id="frontIdName"></div>
+        </div>
+    </div>
+
+    <!-- Back ID Upload -->
+    <div class="upload-section">
+        <h2><span class="document-icon">🪪</span> Back ID Document</h2>
+        
+        <div class="upload-instructions">
+            <p><strong>Upload a clear photo of the back of your ID:</strong></p>
+            <ul>
+                <li>Ensure the entire document is visible and in focus</li>
+                <li>Good lighting is essential</li>
+                <li>Avoid glare or reflections</li>
+                <li>Accepted formats: JPG, PNG, PDF</li>
+                <li>Maximum file size: 10MB</li>
+            </ul>
+        </div>
+
+        <div class="file-input-wrapper">
+            <label for="backId" class="file-label">
+                <span>📤</span>
+                <p>Click to upload or drag and drop</p>
+                <p style="font-size: 12px; opacity: 0.7;">JPG, PNG or PDF (Max 10MB)</p>
+            </label>
+            <input type="file" id="backId" name="backId" accept="image/*,.pdf" required>
+            <div class="file-name" id="backIdName"></div>
+        </div>
+    </div>
+
+    <!-- Selfie Upload -->
+    <div class="upload-section">
+        <h2><span class="document-icon">🤳</span> Selfie / Face Verification</h2>
+        
+        <div class="upload-instructions">
+            <p><strong>Upload a recent selfie for facial verification:</strong></p>
+            <ul>
+                <li>Take a clear photo of your face looking straight at the camera</li>
+                <li>Good lighting - face should be clearly visible</li>
+                <li>Remove sunglasses and avoid shadows on face</li>
+                <li>Recent photo (taken within the last 3 months)</li>
+                <li>Must clearly match your ID document</li>
+                <li>Accepted formats: JPG, PNG</li>
+                <li>Maximum file size: 10MB</li>
+            </ul>
+        </div>
+
+        <div class="file-input-wrapper">
+            <label for="selfie" class="file-label">
+                <span>📷</span>
+                <p>Click to upload or drag and drop</p>
+                <p style="font-size: 12px; opacity: 0.7;">JPG or PNG (Max 10MB)</p>
+            </label>
+            <input type="file" id="selfie" name="selfie" accept="image/*" required>
+            <div class="file-name" id="selfieName"></div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+        <button class="btn btn-back" onclick="goBack()">← Back</button>
+        <button class="btn btn-submit" onclick="reviewAndSubmit()">Review & Submit →</button>
+    </div>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2>Review Your Submission</h2>
+        
+        <p><strong>Personal Information:</strong></p>
+        <p id="reviewInfo"></p>
+
+        <p><strong>Documents Status:</strong></p>
+        <p>
+            ✓ Front ID: <span id="frontIdStatus">Ready</span><br>
+            ✓ Back ID: <span id="backIdStatus">Ready</span><br>
+            ✓ Selfie: <span id="selfieStatus">Ready</span>
+        </p>
+
+        <p style="color: #f87171; font-size: 14px;">
+            <strong>⚠️ Note:</strong> Your face will be verified against your ID document. If faces don't match or your ID has been previously registered, verification will fail.
+        </p>
+
+        <div class="modal-buttons">
+            <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+            <button class="modal-confirm" onclick="submitVerification()">Submit for Verification</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// File input change handlers
+document.getElementById('frontId').addEventListener('change', function(e){
+    const fileName = e.target.files[0]?.name;
+    if(fileName){
+        document.getElementById('frontIdName').textContent = '✓ ' + fileName;
+    }
+});
+
+document.getElementById('backId').addEventListener('change', function(e){
+    const fileName = e.target.files[0]?.name;
+    if(fileName){
+        document.getElementById('backIdName').textContent = '✓ ' + fileName;
+    }
+});
+
+document.getElementById('selfie').addEventListener('change', function(e){
+    const fileName = e.target.files[0]?.name;
+    if(fileName){
+        document.getElementById('selfieName').textContent = '✓ ' + fileName;
+    }
+});
+
+function reviewAndSubmit(){
+    // Validate all files are uploaded
+    const frontId = document.getElementById('frontId').files[0];
+    const backId = document.getElementById('backId').files[0];
+    const selfie = document.getElementById('selfie').files[0];
+
+    if(!frontId || !backId || !selfie){
+        alert('Please upload all three documents (Front ID, Back ID, and Selfie)');
+        return;
+    }
+
+    // Validate file sizes (10MB max)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if(frontId.size > maxSize || backId.size > maxSize || selfie.size > maxSize){
+        alert('One or more files exceed the 10MB size limit');
+        return;
+    }
+
+    // Get KYC data
+    const kycData = JSON.parse(localStorage.getItem('kycData') || '{}');
+    const reviewInfo = `
+        Name: ${kycData.firstName} ${kycData.lastName}<br>
+        Country: ${kycData.country}<br>
+        Date of Birth: ${kycData.dob}
+    `;
+
+    document.getElementById('reviewInfo').innerHTML = reviewInfo;
+    document.getElementById('reviewModal').style.display = 'block';
+}
+
+function closeModal(){
+    document.getElementById('reviewModal').style.display = 'none';
+}
+
+function submitVerification(){
+    // Simulate verification process
+    alert('Processing verification...\n\nYour documents are being analyzed. This may take a few moments.');
+
+    // Store submission data
+    const formData = {
+        personalInfo: JSON.parse(localStorage.getItem('kycData') || '{}'),
+        documents: {
+            frontId: document.getElementById('frontId').files[0].name,
+            backId: document.getElementById('backId').files[0].name,
+            selfie: document.getElementById('selfie').files[0].name
+        },
+        submittedAt: new Date().toISOString(),
+        status: 'pending'
+    };
+
+    localStorage.setItem('verificationSubmission', JSON.stringify(formData));
+
+    // Close modal
+    closeModal();
+    
+    // Redirect to verification processing page
+    window.location.href = 'verification-processing.html';
+}
+
+function goBack(){
+    window.location.href = 'kyc-form.html';
+}
+
+// Check if user has already done KYC
+window.addEventListener('load', function(){
+    const submitted = localStorage.getItem('verificationSubmission');
+    const kycData = localStorage.getItem('kycData');
+    
+    // Only redirect if they've already submitted documents (not just filled the form)
+    if(submitted && !kycData){
+        alert('You have already submitted KYC verification.\n\nPlease wait for the verification to be completed.');
+        window.location.href = 'blockwave.html';
+    }
+    
+    // If no KYC data, redirect back to form
+    if(!kycData){
+        window.location.href = 'kyc-form.html';
+    }
+});
+</script>
+
+</body>
+</html>

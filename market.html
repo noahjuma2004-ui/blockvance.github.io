@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market - Blockvance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#1b2236,#232a47);
+    color:white;
+    padding:30px 60px;
+}
+
+/* HEADER */
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.back{
+    color:#9fb3d9;
+    font-size:16px;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+.back:hover {
+    color:#63a4ff;
+}
+
+h1{
+    font-size:52px;
+    color:#63a4ff;
+    margin-top:20px;
+}
+
+.subtitle{
+    color:#9fb3d9;
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+/* BUY SELL BAR */
+.trade-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.trade-left{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    padding:12px 24px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.buy-btn{
+    background:#1f7a4c;
+    color:#6cffb1;
+}
+
+.sell-btn{
+    background:#2c3557;
+    color:#b4c7ff;
+}
+
+.refresh{
+    background:#1c243f;
+    border:1px solid #34406b;
+    color:#cfd8ff;
+}
+
+.crypto-prices{
+    display:flex;
+    gap:40px;
+    font-weight:600;
+}
+
+.crypto{
+    text-align:center;
+}
+
+.crypto span{
+    display:block;
+    font-weight:400;
+    font-size:14px;
+    margin-top:4px;
+}
+
+.green{ color:#3eea92;}
+.red{ color:#ff5c5c;}
+
+/* OFFERS CARD */
+.card{
+    background:linear-gradient(135deg,#1e2745,#182036);
+    border-radius:16px;
+    padding:40px;
+}
+
+.card h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#9fb3d9;
+    margin-bottom:25px;
+}
+
+/* FILTER BUTTONS */
+.filters{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.filter-btn{
+    background:#10182c;
+    border:1px solid #2c3557;
+    color:#cfd8ff;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.filter-btn.active{
+    background:#3a6df0;
+}
+
+/* TABLE */
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table th{
+    text-align:left;
+    color:#9fb3d9;
+    padding:20px 10px;
+}
+
+.table td{
+    padding:25px 10px;
+    border-top:1px solid #2c3557;
+    vertical-align:middle;
+}
+
+.vendor{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:url('https://randomuser.me/api/portraits/women/44.jpg');
+    background-size:cover;
+}
+
+.price{
+    font-size:22px;
+    font-weight:600;
+}
+
+.badge-red{
+    background:#5a1e24;
+    color:#ff6b6b;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+    margin-left:10px;
+}
+
+.payment{
+    background:#1c243f;
+    padding:8px 14px;
+    border-radius:20px;
+    border:1px solid #2c3557;
+}
+
+.action{
+    display:flex;
+    gap:15px;
+}
+
+.buy-action{
+    background:#1f7a4c;
+    padding:12px 30px;
+    border-radius:10px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.buy-action:hover {
+    background:#158c3f;
+}
+
+.icon-btn{
+    background:#10182c;
+    border:1px solid #2c3557;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.icon-btn:hover {
+    background:#1c243f;
+    border-color:#3a6df0;
+}
+
+.vendors-info {
+    text-align: center;
+    margin-top: 30px;
+    color: #9fb3d9;
+    font-size: 16px;
+}
+
+.refresh-timer {
+    color: #3a6df0;
+    font-weight: 600;
+}
+
+.load-more-btn {
+    background: #3a6df0;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background: #2e5bc4;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <div>
+        <div class="back" onclick="window.location.href='blockwave.html'">← Back to Dashboard</div>
+        <h1>P2P Trading</h1>
+        <div class="subtitle">Trade cryptocurrencies directly with verified vendors</div>
+    </div>
+</div>
+
+<div class="trade-bar">
+    <div class="trade-left">
+        <button class="btn buy-btn">Buy</button>
+        <button class="btn sell-btn">Sell</button>
+        <button class="btn refresh">⟳ Refresh Vendors</button>
+    </div>
+
+    <div class="crypto-prices">
+        <div class="crypto">BTC $67021.00 <span class="green">+0.89%</span></div>
+        <div class="crypto">ETH $1949.99 <span class="green">+0.28%</span></div>
+        <div class="crypto">LTC $52.60 <span class="red">-1.30%</span></div>
+        <div class="crypto">SOL $81.99 <span class="green">+0.62%</span></div>
+        <div class="crypto">USDT $1.00 <span class="green">+0.01%</span></div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Buy Crypto Offers</h2>
+    <p>Choose from verified vendors with competitive rates</p>
+
+    <div class="filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">USDT</button>
+        <button class="filter-btn">BTC</button>
+        <button class="filter-btn">ETH</button>
+        <button class="filter-btn">LTC</button>
+        <button class="filter-btn">SOL</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vendor</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Limits (USD)</th>
+                <th>Payment</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar"></div>
+                        <div>
+                            <div>Petra Novak 64 ⭐ 4.9 (544)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.95 
+                        <span class="badge-red">-0.19%</span>
+                    </div>
+                </td>
+
+                <td>2764.00 USDT</td>
+                <td>$46.00 - $2764.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/men/32.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Marcus Thompson ⭐ 4.8 (1023)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.97 
+                        <span class="badge-red">0.00%</span>
+                    </div>
+                </td>
+
+                <td>5124.00 USDT</td>
+                <td>$100.00 - $5124.00</td>
+                <td><span class="payment">USDT ERC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/women/1.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Sarah Chen ⭐ 5.0 (892)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.98 
+                        <span class="badge-red">+0.10%</span>
+                    </div>
+                </td>
+
+                <td>3512.00 USDT</td>
+                <td>$50.00 - $3512.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/men/5.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>James Rodriguez ⭐ 4.7 (735)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.96 
+                        <span class="badge-red">-0.05%</span>
+                    </div>
+                </td>
+
+                <td>4890.00 USDT</td>
+                <td>$75.00 - $4890.00</td>
+                <td><span class="payment">USDT ERC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/women/67.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Emma Wilson ⭐ 4.9 (1156)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.94 
+                        <span class="badge-red">-0.31%</span>
+                    </div>
+                </td>
+
+                <td>6234.00 USDT</td>
+                <td>$25.00 - $6234.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/men/42.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>David Kumar ⭐ 4.6 (589)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.99 
+                        <span class="badge-red">+0.20%</span>
+                    </div>
+                </td>
+
+                <td>2145.00 USDT</td>
+                <td>$100.00 - $2145.00</td>
+                <td><span class="payment">USDT ERC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/women/53.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Olivia Martinez ⭐ 4.95 (1423)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.93 
+                        <span class="badge-red">-0.42%</span>
+                    </div>
+                </td>
+
+                <td>7890.00 USDT</td>
+                <td>$30.00 - $7890.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/men/65.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Michael Zhang ⭐ 4.8 (945)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$1.01 
+                        <span class="badge-red">+0.15%</span>
+                    </div>
+                </td>
+
+                <td>5678.00 USDT</td>
+                <td>$60.00 - $5678.00</td>
+                <td><span class="payment">USDT ERC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/women/75.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Jessica Brown ⭐ 4.85 (1067)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.97 
+                        <span class="badge-red">+0.05%</span>
+                    </div>
+                </td>
+
+                <td>3456.00 USDT</td>
+                <td>$40.00 - $3456.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/men/80.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Christopher Lee ⭐ 4.75 (812)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.95 
+                        <span class="badge-red">-0.10%</span>
+                    </div>
+                </td>
+
+                <td>4123.00 USDT</td>
+                <td>$55.00 - $4123.00</td>
+                <td><span class="payment">USDT ERC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="vendor">
+                        <div class="avatar" style="background:url('https://randomuser.me/api/portraits/women/26.jpg'); background-size:cover;"></div>
+                        <div>
+                            <div>Amanda Foster ⭐ 5.0 (1289)</div>
+                            <div style="color:#3eea92; font-size:14px;">● Active now</div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="price">$0.98 
+                        <span class="badge-red">-0.25%</span>
+                    </div>
+                </td>
+
+                <td>6789.00 USDT</td>
+                <td>$20.00 - $6789.00</td>
+                <td><span class="payment">USDT TRC20</span></td>
+
+                <td>
+                    <div class="action">
+                        <button class="buy-action">Buy →</button>
+                        <button class="icon-btn">💬</button>
+                        <button class="icon-btn">⚑</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="vendors-info">
+        <p><span id="vendor-count">10</span> vendors (auto refresh in <span class="refresh-timer" id="countdown">30:00</span>)</p>
+        <button class="load-more-btn" onclick="loadMoreVendors()">Load More Vendors</button>
+    </div>
+
+</div>
+
+<script>
+// Countdown timer function
+function startCountdown() {
+    let timeLeft = 30 * 60; // 30 minutes in seconds
+    const countdownElement = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            timeLeft = 30 * 60; // Reset to 30 minutes
+            startCountdown(); // Restart the countdown
+        }
+        
+        timeLeft--;
+    }, 1000);
+}
+
+// Load more vendors function
+function loadMoreVendors() {
+    alert('Loading more vendors...\n\nMore vendors will be displayed shortly.');
+    // You can add logic here to load additional vendors from a database or API
+}
+
+// Start the countdown when the page loads
+window.addEventListener('load', startCountdown);
+</script>

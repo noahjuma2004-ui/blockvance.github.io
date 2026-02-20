@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Blockvance</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #000;
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 450px;
+            color: white;
+        }
+
+        .login-container h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .login-container p {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #0a0a0a;
+            color: white;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .form-group.checkbox input {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .form-group.checkbox label {
+            margin: 0;
+            font-size: 13px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin: 15px 0 25px 0;
+        }
+
+        .forgot-password a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .signup-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li>Market</li>
+            <li>Trade ▾</li>
+            <li>AI Trading</li>
+            <li>Crypto Currency</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<!-- LOGIN PAGE -->
+<div class="login-page">
+    <div class="login-container">
+        <a href="blockwave.html" class="back-link">← Back to Home</a>
+        
+        <h1>Welcome Back</h1>
+        <p>Log in to your Blockvance account</p>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group checkbox">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember me</label>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#forgot">Forgot your password?</a>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+
+        <p class="signup-link">Don't have an account? <a href="signup.html">Create one here</a></p>
+    </div>
+</div>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('remember').checked;
+        
+        // Basic validation
+        if (!email || !password) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Store login status in localStorage
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('username', email.split('@')[0]);
+        localStorage.setItem('useremail', email);
+        
+        // Show success message
+        alert('Login successful! Welcome to Blockvance.');
+        
+        // If remember me is checked, you could store email in localStorage
+        if (rememberMe) {
+            localStorage.setItem('savedEmail', email);
+        } else {
+            localStorage.removeItem('savedEmail');
+        }
+        
+        // Redirect to dashboard page
+        window.location.href = 'dashboard.html';
+    });
+
+    // Load saved email if exists
+    window.addEventListener('load', function() {
+        const savedEmail = localStorage.getItem('savedEmail');
+        if (savedEmail) {
+            document.getElementById('email').value = savedEmail;
+            document.getElementById('remember').checked = true;
+        }
+    });
+</script>
+
+</body>
+</html>
