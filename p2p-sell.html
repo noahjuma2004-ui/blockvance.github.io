@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market - Blockvance</title>
+    <title>Sell Crypto - Blockvance P2P</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -40,7 +40,7 @@
 
         h1{
             font-size:52px;
-            color:#63a4ff;
+            color:#ff6b6b;
             margin-top:20px;
         }
 
@@ -72,13 +72,22 @@
         }
 
         .buy-btn{
-            background:#1f7a4c;
-            color:#6cffb1;
+            background:#2c3557;
+            color:#b4c7ff;
+        }
+
+        .buy-btn:hover {
+            background:#3a4568;
         }
 
         .sell-btn{
-            background:#2c3557;
-            color:#b4c7ff;
+            background:#7a2e2e;
+            color:#ff9b9b;
+        }
+
+        .sell-btn.active {
+            background:#a33d3d;
+            color:#ffffff;
         }
 
         .refresh{
@@ -154,7 +163,7 @@
         }
 
         .filter-btn.active{
-            background:#3a6df0;
+            background:#a33d3d;
         }
 
         .table{
@@ -207,9 +216,9 @@
             font-weight:600;
         }
 
-        .badge-red{
-            background:#5a1e24;
-            color:#ff6b6b;
+        .badge-green{
+            background:#1e5a32;
+            color:#3eea92;
             padding:6px 12px;
             border-radius:20px;
             font-size:14px;
@@ -228,18 +237,20 @@
             gap:15px;
         }
 
-        .buy-action{
-            background:#1f7a4c;
+        .sell-action{
+            background:#7a2e2e;
             padding:12px 30px;
             border-radius:10px;
-            color:white;
+            color:#ff9b9b;
             border:none;
             cursor:pointer;
             font-weight:600;
+            transition: all 0.3s ease;
         }
 
-        .buy-action:hover {
-            background:#158c3f;
+        .sell-action:hover {
+            background:#a33d3d;
+            color:#ffffff;
         }
 
         .icon-btn{
@@ -268,7 +279,7 @@
         }
 
         .load-more-btn {
-            background: #3a6df0;
+            background: #a33d3d;
             color: white;
             border: none;
             padding: 12px 40px;
@@ -281,7 +292,28 @@
         }
 
         .load-more-btn:hover {
-            background: #2e5bc4;
+            background:#8c3333;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #2a1f1f, #1f2a35);
+            border: 1px solid #a33d3d;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-box .icon {
+            font-size: 28px;
+        }
+
+        .info-box .text {
+            color: #cfd8ff;
+            font-size: 15px;
+            line-height: 1.5;
         }
 
     </style>
@@ -291,17 +323,17 @@
 
     <div class="top-bar">
         <div>
-            <div class="back" onclick="window.location.href='blockwave.html'">← Back to Dashboard</div>
-            <h1>P2P Trading</h1>
-            <div class="subtitle">Trade cryptocurrencies directly with verified vendors</div>
+            <div class="back" onclick="window.location.href='market.html'">← Back to P2P Trading</div>
+            <h1>Sell Crypto</h1>
+            <div class="subtitle">Find the best offers to sell your cryptocurrency</div>
         </div>
     </div>
 
     <div class="trade-bar">
         <div class="trade-left">
             <button class="btn buy-btn" onclick="window.location.href='p2p-buy.html'">Buy</button>
-            <button class="btn sell-btn" onclick="window.location.href='p2p-sell.html'">Sell</button>
-            <button class="btn refresh" id="refreshBtn" onclick="refreshVendors()">⟳ Refresh Vendors</button>
+            <button class="btn sell-btn active">Sell</button>
+            <button class="btn refresh" id="refreshBtn" onclick="refreshVendors()">⟳ Refresh Offers</button>
         </div>
 
         <div class="crypto-prices">
@@ -313,25 +345,30 @@
         </div>
     </div>
 
+    <div class="info-box">
+        <span class="icon">💡</span>
+        <span class="text">Browse buyers below to sell your cryptocurrency. Safe and secure P2P transactions with escrow protection.</span>
+    </div>
+
     <div class="card">
-        <h2>Buy Crypto Offers</h2>
-        <p>Choose from verified vendors with competitive rates</p>
+        <h2>Sell Crypto Offers</h2>
+        <p>Browse buyers looking to purchase cryptocurrency from you</p>
 
         <div class="filters">
-            <button class="filter-btn active" onclick="window.location.href='p2p-buy.html'">All</button>
-            <button class="filter-btn" onclick="window.location.href='p2p-buy.html?coin=USDT'">USDT</button>
-            <button class="filter-btn" onclick="window.location.href='p2p-buy.html?coin=BTC'">BTC</button>
-            <button class="filter-btn" onclick="window.location.href='p2p-buy.html?coin=ETH'">ETH</button>
-            <button class="filter-btn" onclick="window.location.href='p2p-buy.html?coin=LTC'">LTC</button>
-            <button class="filter-btn" onclick="window.location.href='p2p-buy.html?coin=SOL'">SOL</button>
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">USDT</button>
+            <button class="filter-btn">BTC</button>
+            <button class="filter-btn">ETH</button>
+            <button class="filter-btn">LTC</button>
+            <button class="filter-btn">SOL</button>
         </div>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Vendor</th>
+                    <th>Buyer</th>
                     <th>Price</th>
-                    <th>Available</th>
+                    <th>Buying</th>
                     <th>Limits (USD)</th>
                     <th>Payment</th>
                     <th>Action</th>
@@ -343,53 +380,54 @@
         </table>
 
         <div class="vendors-info">
-            <p><span id="vendor-count">10</span> vendors (auto refresh in <span class="refresh-timer" id="countdown">30:00</span>)</p>
-            <button class="load-more-btn" onclick="loadMoreVendors()">Load More Vendors</button>
+            <p><span id="vendor-count">10</span> buyers (auto refresh in <span class="refresh-timer" id="countdown">30:00</span>)</p>
+            <button class="load-more-btn" onclick="loadMoreVendors()">Load More Buyers</button>
         </div>
 
     </div>
 
 <script>
-    // Extended vendor data for buying P2P section
-    const vendorNames = [
-        { name: 'Petra Novak', avatar: 'women/44', rating: 4.9, trades: 544 },
-        { name: 'Marcus Thompson', avatar: 'men/32', rating: 4.8, trades: 1023 },
-        { name: 'Sarah Chen', avatar: 'women/1', rating: 5.0, trades: 892 },
-        { name: 'James Rodriguez', avatar: 'men/5', rating: 4.7, trades: 735 },
-        { name: 'Emma Wilson', avatar: 'women/67', rating: 4.9, trades: 1156 },
-        { name: 'David Kumar', avatar: 'men/42', rating: 4.6, trades: 589 },
-        { name: 'Olivia Martinez', avatar: 'women/53', rating: 4.95, trades: 1423 },
-        { name: 'Michael Zhang', avatar: 'men/65', rating: 4.8, trades: 945 },
-        { name: 'Jessica Brown', avatar: 'women/75', rating: 4.85, trades: 1067 },
-        { name: 'Christopher Lee', avatar: 'men/80', rating: 4.75, trades: 812 },
-        { name: 'Amanda Foster', avatar: 'women/26', rating: 5.0, trades: 1289 },
-        { name: 'Robert Taylor', avatar: 'men/15', rating: 4.7, trades: 678 },
-        { name: 'Lisa Anderson', avatar: 'women/38', rating: 4.9, trades: 923 },
-        { name: 'Kevin White', avatar: 'men/52', rating: 4.65, trades: 445 },
-        { name: 'Rachel Green', avatar: 'women/12', rating: 4.95, trades: 1567 },
-        { name: 'Daniel Martinez', avatar: 'men/22', rating: 4.88, trades: 1678 },
-        { name: 'Sophia Lee', avatar: 'women/45', rating: 4.92, trades: 1345 },
-        { name: 'William Chen', avatar: 'men/58', rating: 4.78, trades: 987 },
-        { name: 'Isabella Wang', avatar: 'women/62', rating: 4.97, trades: 2103 },
-        { name: 'Alexander Kim', avatar: 'men/71', rating: 4.82, trades: 756 },
-        { name: 'Mia Johnson', avatar: 'women/88', rating: 4.91, trades: 1890 },
-        { name: 'Ethan Davis', avatar: 'men/33', rating: 4.68, trades: 543 },
-        { name: 'Charlotte Brown', avatar: 'women/29', rating: 4.94, trades: 2234 },
-        { name: 'Benjamin Taylor', avatar: 'men/47', rating: 4.73, trades: 821 },
-        { name: 'Amelia Wilson', avatar: 'women/51', rating: 4.89, trades: 1456 },
-        { name: 'Lucas Moore', avatar: 'men/61', rating: 4.77, trades: 934 },
-        { name: 'Harper Anderson', avatar: 'women/73', rating: 4.96, trades: 1876 },
-        { name: 'Mason Thomas', avatar: 'men/39', rating: 4.71, trades: 667 },
-        { name: 'Evelyn Jackson', avatar: 'women/16', rating: 4.93, trades: 2011 },
-        { name: 'Logan Harris', avatar: 'men/54', rating: 4.69, trades: 789 }
+    // Extended buyer data for selling P2P section
+    const buyerNames = [
+        { name: 'CryptoTrader Pro', avatar: 'men/32', rating: 4.9, trades: 2341 },
+        { name: 'QuickFlip LLC', avatar: 'men/45', rating: 4.8, trades: 1890 },
+        { name: 'Digital Assets Co', avatar: 'women/1', rating: 5.0, trades: 3102 },
+        { name: 'Global Payments Ltd', avatar: 'men/67', rating: 4.7, trades: 987 },
+        { name: 'SwiftCrypto Exchange', avatar: 'women/22', rating: 4.9, trades: 2567 },
+        { name: 'Bitcoin Buyers Inc', avatar: 'men/12', rating: 4.6, trades: 1456 },
+        { name: 'P2P Masters', avatar: 'women/55', rating: 4.95, trades: 3890 },
+        { name: 'SecureTrade Hub', avatar: 'men/89', rating: 4.8, trades: 2100 },
+        { name: 'InstantCrypto', avatar: 'women/33', rating: 4.85, trades: 1723 },
+        { name: 'TradeFlow Pro', avatar: 'men/55', rating: 4.75, trades: 1567 },
+        { name: 'CoinDeals Express', avatar: 'women/77', rating: 5.0, trades: 2890 },
+        { name: 'FastPay Crypto', avatar: 'men/21', rating: 4.7, trades: 1234 },
+        { name: 'Elite Coin Traders', avatar: 'women/44', rating: 4.9, trades: 2456 },
+        { name: 'TrustP2P Solutions', avatar: 'men/78', rating: 4.65, trades: 890 },
+        { name: 'MegaTrade Corp', avatar: 'women/11', rating: 4.95, trades: 3200 },
+        { name: 'CryptoVault Pro', avatar: 'men/34', rating: 4.88, trades: 2156 },
+        { name: 'PixelP2P Exchange', avatar: 'women/59', rating: 4.92, trades: 1876 },
+        { name: 'Quantum Traders', avatar: 'men/41', rating: 4.78, trades: 1543 },
+        { name: 'Blockchain Bulls', avatar: 'women/8', rating: 4.97, trades: 2789 },
+        { name: 'Digital Dealers Inc', avatar: 'men/56', rating: 4.82, trades: 1654 },
+        { name: 'CoinMasters Global', avatar: 'women/65', rating: 4.91, trades: 2234 },
+        { name: 'SwiftPay Traders', avatar: 'men/19', rating: 4.69, trades: 987 },
+        { name: 'Alpha Crypto Hub', avatar: 'women/42', rating: 4.94, trades: 2567 },
+        { name: 'BetaTrade Solutions', avatar: 'men/63', rating: 4.73, trades: 1123 },
+        { name: 'GammaP2P Market', avatar: 'women/28', rating: 4.89, trades: 1987 },
+        { name: 'Delta Exchange', avatar: 'men/37', rating: 4.77, trades: 1456 },
+        { name: 'Epsilon Traders', avatar: 'women/71', rating: 4.96, trades: 2654 },
+        { name: 'Zeta Crypto Group', avatar: 'men/51', rating: 4.71, trades: 876 },
+        { name: 'ThetaP2P Network', avatar: 'women/14', rating: 4.93, trades: 2345 },
+        { name: 'Iota Digital Assets', avatar: 'men/72', rating: 4.68, trades: 1098 }
     ];
 
-    const paymentMethods = ['USDT TRC20', 'USDT ERC20', 'BTC', 'ETH'];
+    const paymentMethods = ['USDT', 'BTC', 'ETH'];
+    const cryptoTypes = ['USDT', 'BTC', 'ETH', 'LTC', 'SOL'];
 
-    // Track displayed vendors for load more functionality
-    let displayedVendors = [];
-    let currentDisplayCount = 0;
-    const vendorsPerLoad = 10;
+    // Track displayed buyers for load more functionality
+    let displayedBuyers = [];
+    let currentBuyerCount = 0;
+    const buyersPerLoad = 10;
 
     // Generate random price around $0.97 (market rate)
     function generatePrice() {
@@ -407,16 +445,16 @@
         return sign + percentage + '%';
     }
 
-    // Generate random available amount
-    function generateAvailable() {
-        return (Math.random() * 7000 + 1000).toFixed(2);
+    // Generate random buying amount
+    function generateBuying() {
+        return (Math.random() * 5000 + 500).toFixed(2);
     }
 
     // Generate random limits
-    function generateLimits(available) {
-        const availableNum = parseFloat(available);
+    function generateLimits(buying) {
+        const buyingNum = parseFloat(buying);
         const minLimit = Math.floor(Math.random() * 50 + 20);
-        const maxLimit = Math.floor(availableNum * (0.3 + Math.random() * 0.4));
+        const maxLimit = Math.floor(buyingNum * (0.5 + Math.random() * 0.5));
         return '$' + minLimit + '.00 - $' + maxLimit + '.00';
     }
 
@@ -429,36 +467,37 @@
         return array;
     }
 
-    // Generate vendor row HTML
-    function generateVendorRow(vendor) {
+    // Generate buyer row HTML
+    function generateBuyerRow(buyer) {
         const price = generatePrice();
         const badgePct = generateBadgePercentage();
-        const available = generateAvailable();
-        const limits = generateLimits(available);
+        const buying = generateBuying();
+        const limits = generateLimits(buying);
         const payment = paymentMethods[Math.floor(Math.random() * paymentMethods.length)];
-        const avatarUrl = 'https://randomuser.me/api/portraits/' + vendor.avatar + '.jpg';
+        const crypto = cryptoTypes[Math.floor(Math.random() * cryptoTypes.length)];
+        const avatarUrl = 'https://randomuser.me/api/portraits/' + buyer.avatar + '.jpg';
 
         return '<tr class="vendor-row">' +
             '<td>' +
                 '<div class="vendor">' +
                     '<div class="avatar" style="background:url(\'' + avatarUrl + '\'); background-size:cover;"></div>' +
                     '<div>' +
-                        '<div>' + vendor.name + ' ⭐ ' + vendor.rating + ' (' + vendor.trades + ')</div>' +
-                        '<div style="color:#3eea92; font-size:14px;">● Active now</div>' +
+                        '<div>' + buyer.name + ' ⭐ ' + buyer.rating + ' (' + buyer.trades + ')</div>' +
+                        '<div style="color:#3eea92; font-size:14px;">● Online</div>' +
                     '</div>' +
                 '</div>' +
             '</td>' +
             '<td>' +
                 '<div class="price">$' + price + ' ' +
-                    '<span class="badge-red">' + badgePct + '</span>' +
+                    '<span class="badge-green">' + badgePct + '</span>' +
                 '</div>' +
             '</td>' +
-            '<td>' + available + ' USDT</td>' +
+            '<td>' + buying + ' ' + crypto + '</td>' +
             '<td>' + limits + '</td>' +
             '<td><span class="payment">' + payment + '</span></td>' +
             '<td>' +
                 '<div class="action">' +
-                    '<button class="buy-action">Buy →</button>' +
+                    '<button class="sell-action" onclick="sellToBuyer(\'' + buyer.name + '\', ' + buying + ', \'' + crypto + '\')">Sell ↶</button>' +
                     '<button class="icon-btn">💬</button>' +
                     '<button class="icon-btn">⚑</button>' +
                 '</div>' +
@@ -466,29 +505,29 @@
         '</tr>';
     }
 
-    // Render vendors to table with optional additional vendors
-    function renderVendors(additionalVendors = []) {
+    // Render buyers to table with optional additional buyers
+    function renderVendors(additionalBuyers = []) {
         const tbody = document.getElementById('vendorsTable');
         
-        // If this is first load, shuffle and get initial vendors
-        if (additionalVendors.length === 0) {
-            displayedVendors = shuffleArray([...vendorNames]).slice(0, vendorsPerLoad);
-            currentDisplayCount = displayedVendors.length;
+        // If this is first load, shuffle and get initial buyers
+        if (additionalBuyers.length === 0) {
+            displayedBuyers = shuffleArray([...buyerNames]).slice(0, buyersPerLoad);
+            currentBuyerCount = displayedBuyers.length;
         } else {
-            // Add additional vendors to the displayed list
-            displayedVendors = displayedVendors.concat(additionalVendors);
-            currentDisplayCount = displayedVendors.length;
+            // Add additional buyers to the displayed list
+            displayedBuyers = displayedBuyers.concat(additionalBuyers);
+            currentBuyerCount = displayedBuyers.length;
         }
         
         let html = '';
-        displayedVendors.forEach(function(vendor) {
-            html += generateVendorRow(vendor);
+        displayedBuyers.forEach(function(buyer) {
+            html += generateBuyerRow(buyer);
         });
         
         tbody.innerHTML = html;
         
-        // Update vendor count display
-        document.getElementById('vendor-count').textContent = currentDisplayCount;
+        // Update buyer count display
+        document.getElementById('vendor-count').textContent = currentBuyerCount;
         
         // Add fade-in animation
         setTimeout(function() {
@@ -527,66 +566,81 @@
             // Reset countdown timer
             resetCountdown();
             
-            // Show success state
-            refreshBtn.innerHTML = '✓ Refreshed!';
+            // Reset button state
+            refreshBtn.innerHTML = '⟳ Refreshed!';
+            refreshBtn.classList.remove('loading');
             refreshBtn.classList.add('success');
             
-            // Reset button after 1.5 seconds
             setTimeout(function() {
                 refreshBtn.innerHTML = originalText;
                 refreshBtn.disabled = false;
-                refreshBtn.classList.remove('loading', 'success');
-            }, 1500);
+                refreshBtn.classList.remove('success');
+            }, 2000);
             
         }, 800);
     }
 
-    // Reset countdown function
-    function resetCountdown() {
-        clearInterval(countdownInterval);
-        timeLeft = 30 * 60;
-        startCountdown();
-    }
-
-    // Countdown timer function
+    // Countdown timer functions
     function startCountdown() {
-        const countdownElement = document.getElementById('countdown');
-        
         countdownInterval = setInterval(function() {
+            timeLeft--;
+            
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
             
-            countdownElement.textContent = minutes + ':' + seconds.toString().padStart(2, '0');
+            document.getElementById('countdown').textContent = 
+                minutes.toString().padStart(2, '0') + ':' + 
+                seconds.toString().padStart(2, '0');
             
             if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                timeLeft = 30 * 60;
-                startCountdown();
+                refreshVendors();
             }
-            
-            timeLeft--;
         }, 1000);
     }
 
-    // Load more vendors function - adds more vendors when button is clicked
+    function resetCountdown() {
+        timeLeft = 30 * 60;
+    }
+
+    // Filter button functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(function(b) {
+                b.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+
+    // Sell to buyer function
+    function sellToBuyer(buyerName, amount, crypto) {
+        const confirmSell = confirm('Sell ' + amount + ' ' + crypto + ' to ' + buyerName + '?\n\nThis will initiate a secure P2P transaction.');
+        
+        if (confirmSell) {
+            alert('Transaction initiated!\n\nYou are selling ' + amount + ' ' + crypto + ' to ' + buyerName + '.\n\nPlease wait for the buyer to confirm and send payment.');
+        }
+    }
+
+    // Load more buyers function - adds more buyers when button is clicked
     function loadMoreVendors() {
         const loadMoreBtn = document.querySelector('.load-more-btn');
         
-        // Check if there are more vendors to load
-        const remainingVendors = vendorNames.length - currentDisplayCount;
+        // Check if there are more buyers to load
+        const remainingBuyers = buyerNames.length - currentBuyerCount;
         
-        if (remainingVendors <= 0) {
-            // All vendors already displayed - shuffle and show from beginning
-            displayedVendors = shuffleArray([...vendorNames]).slice(0, vendorsPerLoad);
-            currentDisplayCount = displayedVendors.length;
+        if (remainingBuyers <= 0) {
+            // All buyers already displayed - shuffle and show from beginning
+            displayedBuyers = shuffleArray([...buyerNames]).slice(0, buyersPerLoad);
+            currentBuyerCount = displayedBuyers.length;
             
             const tbody = document.getElementById('vendorsTable');
             let html = '';
-            displayedVendors.forEach(function(vendor) {
-                html += generateVendorRow(vendor);
+            displayedBuyers.forEach(function(buyer) {
+                html += generateBuyerRow(buyer);
             });
             tbody.innerHTML = html;
-            document.getElementById('vendor-count').textContent = currentDisplayCount;
+            document.getElementById('vendor-count').textContent = currentBuyerCount;
             
             // Add fade-in animation
             setTimeout(function() {
@@ -598,7 +652,7 @@
                 });
             }, 10);
             
-            loadMoreBtn.textContent = 'Load More Vendors';
+            loadMoreBtn.textContent = 'Load More Buyers';
             return;
         }
         
@@ -608,42 +662,42 @@
         
         // Simulate network delay
         setTimeout(function() {
-            // Get next batch of vendors
-            const nextVendors = vendorNames.slice(currentDisplayCount, currentDisplayCount + vendorsPerLoad);
+            // Get next batch of buyers
+            const nextBuyers = buyerNames.slice(currentBuyerCount, currentBuyerCount + buyersPerLoad);
             
-            // Add to displayed vendors
-            displayedVendors = displayedVendors.concat(nextVendors);
-            currentDisplayCount = displayedVendors.length;
+            // Add to displayed buyers
+            displayedBuyers = displayedBuyers.concat(nextBuyers);
+            currentBuyerCount = displayedBuyers.length;
             
             // Append new rows to table
             const tbody = document.getElementById('vendorsTable');
             let html = '';
-            displayedVendors.forEach(function(vendor) {
-                html += generateVendorRow(vendor);
+            displayedBuyers.forEach(function(buyer) {
+                html += generateBuyerRow(buyer);
             });
             tbody.innerHTML = html;
             
-            // Update vendor count
-            document.getElementById('vendor-count').textContent = currentDisplayCount;
+            // Update buyer count
+            document.getElementById('vendor-count').textContent = currentBuyerCount;
             
             // Add fade-in animation for new rows
             setTimeout(function() {
                 const rows = tbody.querySelectorAll('.vendor-row');
                 rows.forEach(function(row, index) {
-                    if (index >= currentDisplayCount - vendorsPerLoad) {
+                    if (index >= currentBuyerCount - buyersPerLoad) {
                         setTimeout(function() {
                             row.classList.add('fade-in');
-                        }, (index - (currentDisplayCount - vendorsPerLoad)) * 50);
+                        }, (index - (currentBuyerCount - buyersPerLoad)) * 50);
                     }
                 });
             }, 10);
             
-            // Check if we've shown all vendors
-            const newRemaining = vendorNames.length - currentDisplayCount;
+            // Check if we've shown all buyers
+            const newRemaining = buyerNames.length - currentBuyerCount;
             if (newRemaining <= 0) {
-                loadMoreBtn.textContent = 'Show More Vendors';
+                loadMoreBtn.textContent = 'Show More Buyers';
             } else {
-                loadMoreBtn.textContent = 'Load More Vendors';
+                loadMoreBtn.textContent = 'Load More Buyers';
             }
             
             loadMoreBtn.disabled = false;
@@ -651,10 +705,11 @@
     }
 
     // Initialize on page load
-    window.addEventListener('load', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         renderVendors();
         startCountdown();
     });
+
 </script>
 
 </body>

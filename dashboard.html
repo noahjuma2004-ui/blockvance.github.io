@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Blockvance</title>
 
+
 <style>
 body{
     margin:0;
@@ -128,6 +129,56 @@ body{
 
 .panel.active{
     left:0;
+}
+
+/* Crypto Panel Styling */
+#crypto.panel {
+    overflow-y: auto;
+    padding-bottom: 40px;
+}
+
+#crypto.panel h2 {
+    margin-top: 0;
+    color: #60a5fa;
+    font-size: 28px;
+}
+
+#crypto.panel p {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#crypto.panel iframe {
+    background: #000;
+}
+
+/* Crypto Panel - iframe container */
+#crypto.panel {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+}
+
+#crypto.panel.active {
+    left: 0;
+    padding: 0;
+}
+
+#crypto.panel.active h2,
+#crypto.panel.active p {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#crypto.panel.active p {
+    margin-bottom: 20px;
+}
+
+#crypto iframe {
+    display: block;
 }
 
 h2{
@@ -258,6 +309,7 @@ body{
         <li onclick="showPanel('earn')">📈 Earn</li>
         <li onclick="showPanel('spot')">📊 Spot Trading</li>
         <li onclick="showPanel('ai')">🤖 AI Trading</li>
+        <li onclick="window.location.href='cypto.html'">💱 Crypto Currency</li>
         <li onclick="showPanel('converter')">🔄 Currency Converter</li>
         <li onclick="showPanel('transactions')">📱 Transaction History</li>
         <li onclick="showPanel('payments')">💳 Payment Methods</li>
@@ -367,6 +419,14 @@ body{
     </div>
 </div>
 
+<div id="crypto" class="panel">
+    <h2>Cryptocurrency Trading</h2>
+    <p>Explore cryptocurrency markets and start trading on Blockvance.</p>
+    <div style="height: calc(100vh - 180px); width: 100%; overflow: hidden; border-radius: 10px;">
+        <iframe src="cypto.html" style="width:100%; height:100%; border:none; background:#000;" title="Crypto Currency" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+</div>
+
 <div id="converter" class="panel">
     <h2>Convert Currencies</h2>
     <p>Quick currency conversion at real-time rates.</p>
@@ -395,15 +455,224 @@ body{
     <h2>Account Protection</h2>
     <p>Manage your security settings and two-factor authentication.</p>
     <div class="panel-content">
-        <p>Security options and settings will be displayed here.</p>
+        <div class="security-header">
+            <h3>Two-Factor Authentication (2FA)</h3>
+            <p>Add an extra layer of security to your account by enabling 2FA</p>
+        </div>
+        
+        <div id="2fa-status" class="tfa-status">
+            <span class="status-badge disabled">2FA is currently disabled</span>
+        </div>
+        
+        <button id="enable2FABtn" class="btn-primary" onclick="setup2FA()">Enable 2FA</button>
+
+        <div id="setupArea" class="setup-area" style="display: none;"></div>
     </div>
+    
+    <style>
+    .security-header {
+        margin-bottom: 20px;
+    }
+    
+    .security-header h3 {
+        color: #60a5fa;
+        margin: 0 0 10px 0;
+    }
+    
+    .security-header p {
+        color: #aaa;
+        margin: 0;
+    }
+    
+    .tfa-status {
+        margin: 20px 0;
+    }
+    
+    .status-badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .status-badge.enabled {
+        background: #065f46;
+        color: #34d399;
+        border: 1px solid #34d399;
+    }
+    
+    .status-badge.disabled {
+        background: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #fca5a5;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px;
+        background-color: #2f80ed;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1e40af;
+    }
+    
+    .btn-primary:disabled {
+        background-color: #4b5563;
+        cursor: not-allowed;
+    }
+    
+    .setup-area {
+        margin-top: 30px;
+        padding: 25px;
+        background: #111827;
+        border-radius: 10px;
+        border: 1px solid #374151;
+    }
+    
+    .setup-area p {
+        color: #e5e7eb;
+        margin: 10px 0;
+    }
+    
+    .setup-area img {
+        margin: 15px 0;
+        border-radius: 8px;
+        border: 2px solid #3b82f6;
+    }
+    
+    .setup-area b {
+        color: #60a5fa;
+        font-family: monospace;
+        font-size: 16px;
+        word-break: break-all;
+    }
+    
+    .setup-area input {
+        padding: 12px;
+        margin-top: 15px;
+        width: 200px;
+        border: 1px solid #374151;
+        border-radius: 6px;
+        background: #1f2937;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+    
+    .setup-area input:focus {
+        outline: none;
+        border-color: #3b82f6;
+    }
+    
+    .setup-area button {
+        margin-top: 15px;
+    }
+    
+    #result {
+        margin-top: 15px;
+        font-weight: 500;
+    }
+    
+    .success-message {
+        color: #34d399 !important;
+    }
+    
+    .error-message {
+        color: #fca5a5 !important;
+    }
+    
+    .divider {
+        height: 1px;
+        background: #374151;
+        margin: 25px 0;
+    }
+    </style>
 </div>
 
-<div id="settings" class="panel">
-    <h2>Preferences</h2>
-    <p>Customize your account preferences and notifications.</p>
-    <div class="panel-content">
-        <p>Your account settings will be available here.</p>
+<div id="settings" class="panel" style="overflow-y: auto;">
+    <h2 style="margin-top: 0; margin-bottom: 20px;">Account Settings</h2>
+    
+    <!-- Settings Card Wrapper -->
+    <div class="settings-card" style="display: block;">
+
+        <!-- Profile Section -->
+        <div class="section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 15px;">Profile Information</h3>
+
+            <img id="profilePreview" class="profile-pic-preview" src="https://via.placeholder.com/80" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #9333ea;">
+
+            <input type="file" id="profilePic" accept="image/*" style="background: none; margin-bottom: 10px;">
+            
+            <button type="button" id="deleteProfilePic" onclick="deleteProfilePicture()" style="background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 15px; display: none;">🗑️ Delete Profile Picture</button>
+
+            <input type="text" id="settingsName" placeholder="Full Name" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+            <input type="email" id="settingsEmail" placeholder="Email Address" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+            <input type="tel" id="settingsPhone" placeholder="Phone Number" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+            <textarea id="settingsBio" rows="3" placeholder="Short Bio" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; resize: none; box-sizing: border-box;"></textarea>
+        </div>
+
+        <!-- Password Section -->
+        <div class="section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 15px;">Change Password</h3>
+            <input type="password" id="currentPassword" placeholder="Current Password" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+            <input type="password" id="newPassword" placeholder="New Password" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+            <input type="password" id="confirmPassword" placeholder="Confirm New Password" style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 12px; background: #1e293b; color: white; box-sizing: border-box;">
+        </div>
+
+        <!-- Notifications Preferences -->
+        <div class="section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 15px;">Notification Preferences</h3>
+
+            <div class="toggle" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span>Email Notifications</span>
+                <input type="checkbox" id="emailNotif" checked>
+            </div>
+
+            <div class="toggle" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span>SMS Notifications</span>
+                <input type="checkbox" id="smsNotif">
+            </div>
+
+            <div class="toggle" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span>Push Notifications</span>
+                <input type="checkbox" id="pushNotif" checked>
+            </div>
+        </div>
+
+        <!-- Account Activity Notifications -->
+        <div class="section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 15px;">Recent Account Activity</h3>
+
+            <div class="notification-box" style="background: #1e293b; padding: 10px; border-radius: 8px; margin-bottom: 10px;">✅ Profile Updated Successfully</div>
+            <div class="notification-box" style="background: #1e293b; padding: 10px; border-radius: 8px; margin-bottom: 10px;">🔐 Password Changed</div>
+            <div class="notification-box" style="background: #1e293b; padding: 10px; border-radius: 8px; margin-bottom: 10px;">💰 Transaction Completed</div>
+        </div>
+
+        <!-- Security Section -->
+        <div class="section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 15px;">Security Settings</h3>
+
+            <div class="toggle" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span>Enable Two-Factor Authentication (2FA)</span>
+                <input type="checkbox" id="twoFA">
+            </div>
+
+            <div class="toggle" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span>Login Alerts</span>
+                <input type="checkbox" id="loginAlerts" checked>
+            </div>
+        </div>
+
+        <button class="save-btn" onclick="saveSettings()" style="background: linear-gradient(90deg, #3b82f6, #9333ea); padding: 12px; border: none; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; color: white;">Save Changes</button>
+
     </div>
 </div>
 
@@ -428,27 +697,303 @@ function toggleMenu(){
 
 function logout(){
     if(confirm('Are you sure you want to logout?')){
-        // Clear session data
+        // Clear all session data
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('username');
         localStorage.removeItem('useremail');
-        window.location.href = 'blockwave.html';
+        sessionStorage.removeItem('is2FAEnabled');
+        sessionStorage.removeItem('userSession');
+        sessionStorage.removeItem('sessionId');
+        window.location.href = 'http://localhost:3000/blockwave.html';
     }
 }
 
 // Load user data on page load
 window.addEventListener('load', function(){
+    // Check if user is logged in FIRST - before loading any data
+    const isLoggedIn = localStorage.getItem('loggedIn');
+    const sessionBackup = sessionStorage.getItem('userSession');
+    
+    if (!isLoggedIn) {
+        // Try to restore session from sessionStorage backup
+        if (sessionBackup) {
+            try {
+                const sessionData = JSON.parse(sessionBackup);
+                // Restore session to localStorage
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('username', sessionData.username || 'User');
+                localStorage.setItem('useremail', sessionData.useremail || 'user@email.com');
+            } catch(e) {
+                // Invalid session data, redirect to login
+                window.location.href = 'blockwave.html';
+                return;
+            }
+        } else {
+            // No session, redirect to login
+            window.location.href = 'blockwave.html';
+            return;
+        }
+    }
+    
+    // Create session backup for resilience
     const username = localStorage.getItem('username') || 'User';
     const useremail = localStorage.getItem('useremail') || 'user@email.com';
     
+    sessionStorage.setItem('userSession', JSON.stringify({
+        username: username,
+        useremail: useremail,
+        loginTime: Date.now()
+    }));
+    sessionStorage.setItem('sessionId', 'active');
+    
+    // Now load the user data
     document.getElementById('username').textContent = username;
     document.getElementById('useremail').textContent = useremail;
 
-    // Check if user is logged in
-    if(!localStorage.getItem('loggedIn')){
-        window.location.href = 'blockwave.html';
+    // Load settings data
+    document.getElementById('settingsName').value = username;
+    document.getElementById('settingsEmail').value = useremail;
+    document.getElementById('settingsPhone').value = localStorage.getItem('userphone') || '';
+    document.getElementById('settingsBio').value = localStorage.getItem('userbio') || '';
+    
+    // Load profile picture if exists
+    const savedProfilePic = localStorage.getItem('profilePic');
+    if(savedProfilePic){
+        document.getElementById('profilePreview').src = savedProfilePic;
+        document.getElementById('deleteProfilePic').style.display = 'inline-block';
     }
 });
+
+// Profile picture preview
+document.getElementById('profilePic').addEventListener('change', function(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        document.getElementById('profilePreview').src = reader.result;
+        document.getElementById('deleteProfilePic').style.display = 'inline-block';
+    }
+    if(event.target.files[0]){
+        reader.readAsDataURL(event.target.files[0]);
+    }
+});
+
+// Delete profile picture function
+function deleteProfilePicture(){
+    // Remove from localStorage
+    localStorage.removeItem('profilePic');
+    
+    // Reset to placeholder
+    document.getElementById('profilePreview').src = 'https://via.placeholder.com/80';
+    
+    // Hide delete button
+    document.getElementById('deleteProfilePic').style.display = 'none';
+    
+    // Clear file input
+    document.getElementById('profilePic').value = '';
+    
+    // Add notification
+    addActivityNotification('🗑️ Profile Picture Deleted');
+}
+
+// Save settings function
+function saveSettings(){
+    const name = document.getElementById('settingsName').value;
+    const email = document.getElementById('settingsEmail').value;
+    const phone = document.getElementById('settingsPhone').value;
+    const bio = document.getElementById('settingsBio').value;
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    // Check if changing password
+    if(currentPassword || newPassword || confirmPassword){
+        if(!currentPassword){
+            alert('Please enter your current password');
+            return;
+        }
+        if(!newPassword){
+            alert('Please enter a new password');
+            return;
+        }
+        if(newPassword !== confirmPassword){
+            alert('New passwords do not match');
+            return;
+        }
+        if(newPassword.length < 6){
+            alert('Password must be at least 6 characters');
+            return;
+        }
+    }
+
+    // Save user data
+    localStorage.setItem('username', name);
+    localStorage.setItem('useremail', email);
+    localStorage.setItem('userphone', phone);
+    localStorage.setItem('userbio', bio);
+
+    // Save profile picture
+    const profileSrc = document.getElementById('profilePreview').src;
+    if(profileSrc && profileSrc !== 'https://via.placeholder.com/80'){
+        localStorage.setItem('profilePic', profileSrc);
+        document.getElementById('deleteProfilePic').style.display = 'inline-block';
+    } else {
+        localStorage.removeItem('profilePic');
+        document.getElementById('deleteProfilePic').style.display = 'none';
+    }
+
+    // Update main profile display
+    document.getElementById('username').textContent = name;
+    document.getElementById('useremail').textContent = email;
+
+    // Add activity notification
+    addActivityNotification('✅ Profile Updated Successfully');
+
+    alert('Settings saved successfully!');
+
+    // Clear password fields
+    document.getElementById('currentPassword').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+}
+
+// Add activity notification
+function addActivityNotification(message) {
+    const activitySection = document.querySelector('#settings .notification-box');
+    if(activitySection){
+        const newNotification = document.createElement('div');
+        newNotification.className = 'notification-box';
+        newNotification.style.background = '#1e293b';
+        newNotification.style.padding = '10px';
+        newNotification.style.borderRadius = '8px';
+        newNotification.style.marginBottom = '10px';
+        newNotification.textContent = message;
+        
+        const container = activitySection.parentNode;
+        container.insertBefore(newNotification, container.firstChild);
+    }
+}
+
+// Check and update 2FA status
+function check2FAStatus() {
+    const is2FAEnabled = sessionStorage.getItem('is2FAEnabled') === 'true';
+    const statusDiv = document.getElementById('2fa-status');
+    const enableBtn = document.getElementById('enable2FABtn');
+    
+    if (is2FAEnabled) {
+        statusDiv.innerHTML = '<span class="status-badge enabled">2FA is enabled ✓</span>';
+        enableBtn.textContent = '2FA is Active';
+        enableBtn.disabled = true;
+    } else {
+        statusDiv.innerHTML = '<span class="status-badge disabled">2FA is currently disabled</span>';
+        enableBtn.textContent = 'Enable 2FA';
+        enableBtn.disabled = false;
+    }
+}
+
+// Setup 2FA - generates QR code and secret
+async function setup2FA() {
+    // Check if accessed through server
+    const isLocalhost = window.location.href.startsWith('http://localhost:') || window.location.href.startsWith('http://127.0.0.1:');
+    
+    if (!isLocalhost) {
+        alert('Please access this page through the server:\n\n1. Make sure the server is running (npm start)\n2. Open http://localhost:3000/dashboard.html in your browser');
+        return;
+    }
+    
+    const setupArea = document.getElementById('setupArea');
+    const enableBtn = document.getElementById('enable2FABtn');
+    
+    if (!setupArea || !enableBtn) {
+        console.error('Elements not found');
+        return;
+    }
+    
+    // Show loading state
+    enableBtn.disabled = true;
+    enableBtn.textContent = 'Loading...';
+    
+    try {
+        // First check if server is reachable
+        const healthRes = await fetch('/api/health', { cache: 'no-store' });
+        if (!healthRes.ok) {
+            throw new Error('Server not responding properly');
+        }
+        
+        // Then get 2FA setup
+        const res = await fetch('/api/2fa/setup', {
+            cache: 'no-store'
+        });
+        
+        if (!res.ok) {
+            throw new Error('Server error: ' + res.status);
+        }
+        
+        const data = await res.json();
+
+        setupArea.style.display = 'block';
+        setupArea.innerHTML = `
+            <p>Scan this QR Code with Google Authenticator:</p>
+            <img src="${data.qrCode}" width="200"/>
+
+            <p>Or copy this manual key:</p>
+            <b>${data.manualCode}</b>
+
+            <p>Enter 6-digit code from your authenticator:</p>
+            <input type="text" id="token" maxlength="6" placeholder="000000"/>
+            <br/><br/>
+            <button class="btn-primary" onclick="verify2FA()">Verify & Enable</button>
+            <p id="result"></p>
+        `;
+        
+        enableBtn.textContent = 'QR Code Generated';
+    } catch (error) {
+        console.error('Error setting up 2FA:', error);
+        setupArea.style.display = 'block';
+        setupArea.innerHTML = '<p style="color: #fca5a5;">Cannot connect to server. Fix:\n1. Make sure terminal shows "Server running on http://localhost:3000"\n2. If terminal is closed, run "npm start" in project folder\n3. Refresh this page and try again</p>';
+        enableBtn.disabled = false;
+        enableBtn.textContent = 'Enable 2FA';
+    }
+}
+
+// Verify 2FA token and enable
+async function verify2FA() {
+    const token = document.getElementById('token').value;
+    const result = document.getElementById('result');
+    
+    if (!token || token.length !== 6) {
+        result.innerHTML = '<span class="error-message">Please enter a valid 6-digit code.</span>';
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/2fa/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            result.innerHTML = '<span class="success-message">2FA Successfully Enabled! Your account is now more secure.</span>';
+            
+            // Store 2FA status in session
+            sessionStorage.setItem('is2FAEnabled', 'true');
+            
+            // Update UI
+            check2FAStatus();
+            
+            // Hide setup area after success
+            setTimeout(() => {
+                document.getElementById('setupArea').style.display = 'none';
+            }, 3000);
+        } else {
+            result.innerHTML = '<span class="error-message">Invalid Code. Please try again.</span>';
+        }
+    } catch (error) {
+        console.error('Error verifying 2FA:', error);
+        result.innerHTML = '<span class="error-message">Error connecting to server. Please try again.</span>';
+    }
+}
 </script>
 
 </body>

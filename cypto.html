@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blockvance | Crypto Currency</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #F5F5F5;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #3B82F6;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav ul li {
+    cursor: pointer;
+    color: #9CA3AF;
+    transition: 0.3s;
+}
+
+nav ul li:hover {
+    color: #fff;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #3B82F6;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.btn-primary:hover {
+    background: #2563EB;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid #3B82F6;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background: transparent;
+    color: #3B82F6;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: #3B82F6;
+    color: white;
+}
+
+/* Hero */
+.hero {
+    padding: 80px 8%;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero span {
+    color: #3B82F6;
+}
+
+.hero p {
+    margin-top: 20px;
+    color: #9CA3AF;
+    font-size: 18px;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+/* Section */
+.section {
+    padding: 60px 8%;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Market Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 16px 20px;
+    text-align: left;
+}
+
+th {
+    color: #9CA3AF;
+    border-bottom: 1px solid #222;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+tr {
+    border-bottom: 1px solid #111;
+    transition: 0.3s;
+}
+
+tr:hover {
+    background: #111;
+}
+
+.coin-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coin-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #3B82F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.price {
+    font-weight: 600;
+    color: #fff;
+}
+
+.positive {
+    color: #22c55e;
+}
+
+.negative {
+    color: #ef4444;
+}
+
+/* Cards */
+.card-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #111;
+    padding: 30px;
+    border-radius: 16px;
+    flex: 1;
+    min-width: 280px;
+    transition: 0.3s;
+    border: 1px solid #1f2937;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(59,130,246,0.2);
+    border-color: #3B82F6;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.card p {
+    color: #9CA3AF;
+    line-height: 1.6;
+}
+
+/* Pricing Table */
+.pricing-table {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.pricing-table th, .pricing-table td {
+    padding: 15px;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 80px 8%;
+}
+
+.cta h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #0a0a0a;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .section h2 {
+        font-size: 24px;
+    }
+    
+    .card-container {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo" onclick="window.location.href='blockwave.html'">BLOCVANCE</div>
+    <ul>
+        <li onclick="window.location.href='market.html'">Market</li>
+        <li onclick="window.location.href='trade.html'">Trade</li>
+        <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+        <li style="color:#3B82F6;" onclick="window.location.href='cypto.html'">Crypto Currency</li>
+        <li onclick="window.location.href='about.html'">About</li>
+        <li onclick="window.location.href='contact.html'">Contact</li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Trade Crypto Smarter on <span>Blockvance</span></h1>
+    <p>Access top digital assets, intelligent AI-powered tools, competitive pricing, and secure trading — all in one powerful platform.</p>
+    <div class="hero-buttons">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">Start Trading Now</button>
+        <button class="btn-outline" onclick="window.location.href='market.html'">Explore Markets</button>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Live Crypto Markets</h2>
+    <table>
+        <tr>
+            <th>Coin</th>
+            <th>Price</th>
+            <th>24h Change</th>
+            <th>Market Cap</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon">₿</div>
+                    <span>Bitcoin (BTC)</span>
+                </div>
+            </td>
+            <td class="price">$64,200</td>
+            <td class="positive">+2.3%</td>
+            <td>$1.26T</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon" style="background:#627EEA;">Ξ</div>
+                    <span>Ethereum (ETH)</span>
+                </div>
+            </td>
+            <td class="price">$3,420</td>
+            <td class="negative">-0.8%</td>
+            <td>$411B</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon" style="background:#9945FF;">◎</div>
+                    <span>Solana (SOL)</span>
+                </div>
+            </td>
+            <td class="price">$145</td>
+            <td class="positive">+5.1%</td>
+            <td>$64B</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon" style="background:#F7931A;">₮</div>
+                    <span>Tether (USDT)</span>
+                </div>
+            </td>
+            <td class="price">$1.00</td>
+            <td class="positive">+0.01%</td>
+            <td>$95B</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon" style="background:#2775CA;">$</div>
+                    <span>USD Coin (USDC)</span>
+                </div>
+            </td>
+            <td class="price">$1.00</td>
+            <td class="positive">+0.02%</td>
+            <td>$42B</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="coin-name">
+                    <div class="coin-icon" style="background:#E84142;">X</div>
+                    <span>XRP (XRP)</span>
+                </div>
+            </td>
+            <td class="price">$0.52</td>
+            <td class="positive">+1.2%</td>
+            <td>$28B</td>
+            <td><button class="btn-primary" onclick="window.location.href='trade.html'">Trade</button></td>
+        </tr>
+    </table>
+</section>
+
+<section class="section">
+    <h2>Why Trade Crypto on Blockvance?</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>🚀 Lightning Fast Execution</h3>
+            <p>Institutional-grade order matching for seamless trading with minimal slippage.</p>
+        </div>
+        <div class="card">
+            <h3>🔐 Bank-Level Security</h3>
+            <p>Multi-layer encryption, cold wallet storage, and 24/7 monitoring.</p>
+        </div>
+        <div class="card">
+            <h3>🤖 AI-Powered Insights</h3>
+            <p>Advanced analytics and AI trading signals for smarter decisions.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Transparent & Competitive Pricing</h2>
+    <p style="color: #9CA3AF; margin-bottom: 20px;">No hidden charges. Volume-based discounts. Low maker & taker fees designed so you keep more of your profits.</p>
+
+    <table class="pricing-table">
+        <tr>
+            <th>Tier</th>
+            <th>30-Day Volume</th>
+            <th>Maker Fee</th>
+            <th>Taker Fee</th>
+        </tr>
+        <tr>
+            <td>Starter</td>
+            <td>$0 – $10,000</td>
+            <td>0.10%</td>
+            <td>0.15%</td>
+        </tr>
+        <tr>
+            <td>Pro</td>
+            <td>$10,000 – $100,000</td>
+            <td>0.08%</td>
+            <td>0.12%</td>
+        </tr>
+        <tr>
+            <td>Elite</td>
+            <td>$100,000+</td>
+            <td>0.05%</td>
+            <td>0.08%</td>
+        </tr>
+    </table>
+</section>
+
+<section class="section">
+    <h2>Trading Limits</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Level 1 – Basic</h3>
+            <p>Daily Withdrawal: $50,000<br>No minimum deposit</p>
+        </div>
+        <div class="card">
+            <h3>Level 2 – Advanced</h3>
+            <p>Daily Withdrawal: $500,000<br>Margin & advanced tools access</p>
+        </div>
+        <div class="card">
+            <h3>Institutional</h3>
+            <p>Custom limits<br>Dedicated account manager</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Ready to Start Trading Crypto with Confidence?</h2>
+    <div class="cta-buttons">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">Create Free Account</button>
+        <button class="btn-outline" onclick="window.location.href='login.html'">Login to Trade</button>
+    </div>
+</section>
+
+<footer>
+    © 2026 Blockvance. All rights reserved.
+</footer>
+
+</body>
+</html>

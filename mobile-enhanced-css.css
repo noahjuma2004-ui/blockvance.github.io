@@ -1,0 +1,367 @@
+/**
+ * OPTIONAL: Mobile-Enhanced CSS Additions
+ * Add these to your style.css if you want extra mobile features
+ * Reference: https://example.com/mobile-guide.md
+ */
+
+/* =====================================================
+   ADVANCED MOBILE ENHANCEMENTS (OPTIONAL)
+   ===================================================== */
+
+/* 1. SAFE AREA SUPPORT - For notched devices */
+@supports (padding: max(0px)) {
+  header {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  .hero {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+}
+
+/* 2. IMPROVE VIEWPORT HEIGHT (prevents mobile keyboard overlap) */
+@media (max-height: 667px) {
+  .hero {
+    min-height: 80vh;
+    padding: 20px 15px;
+  }
+
+  header {
+    padding: 12px 10px;
+  }
+}
+
+/* 3. LANDSCAPE ORIENTATION - Most phones in landscape are 512-640px height */
+@media (max-height: 512px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 15px;
+  }
+
+  .left h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .left p {
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+
+  .big-signup {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* 4. SMALL PHONES (like iPhone SE with 375px width) */
+@media (max-width: 375px) {
+  html {
+    font-size: 13px;
+  }
+
+  header {
+    padding: 12px 8px;
+  }
+
+  .logo h2 {
+    font-size: 1.2rem;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
+
+  .signup {
+    padding: 7px 12px;
+    font-size: 0.85rem;
+  }
+
+  .left h1 {
+    font-size: 1.7rem;
+  }
+
+  .left p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 5. LARGE PHONES (like Pixel 7 with 412px+ width) */
+@media (min-width: 412px) and (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+
+  .left h1 {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    gap: 18px;
+  }
+}
+
+/* 6. VERY LARGE PHONES (Galaxy S21, Pixel 6 Pro - 412px+ width) */
+@media (min-width: 480px) and (max-width: 600px) {
+  header {
+    padding: 18px 25px;
+  }
+
+  .hero {
+    padding: 30px 25px;
+  }
+
+  nav ul {
+    gap: 25px;
+  }
+
+  .left h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* 7. DARK MODE - Already supported, but optimize further */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+    color: #fff;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    background: #111;
+    color: #fff;
+    border-color: #333;
+  }
+}
+
+/* 8. LIGHT MODE - For devices set to light theme */
+@media (prefers-color-scheme: light) {
+  /* Retain your dark theme - it's part of the brand */
+  /* Or add light mode support here */
+}
+
+/* 9. HIGH DPI SCREENS - Reduce weight */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 10. REDUCED MOTION - Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  button,
+  .get-started,
+  .big-signup {
+    transform: none !important;
+  }
+}
+
+/* 11. LANDSCAPE MODE - Optimize for rotated phones */
+@media (max-width: 640px) and (orientation: landscape) {
+  header {
+    padding: 8px 10px;
+  }
+
+  nav {
+    margin-top: 0;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .hero {
+    min-height: auto;
+    gap: 15px;
+  }
+
+  .left h1 {
+    font-size: 1.4rem;
+  }
+
+  .left p {
+    font-size: 0.85rem;
+  }
+
+  .right {
+    display: none;
+  }
+}
+
+/* 12. FOLDABLE DEVICES - Support multiple screens */
+@media (screen-spanning: single-fold-vertical) {
+  /* For vertical fold */
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (screen-spanning: single-fold-horizontal) {
+  /* For horizontal fold */
+  .hero {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/* 13. PRINT STYLES - For printing receipts */
+@media print {
+  header,
+  nav,
+  .nav-buttons,
+  .right,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .hero {
+    padding: 20px;
+  }
+}
+
+/* 14. TOUCH DEVICE SPECIFIC */
+@media (hover: none) and (pointer: coarse) {
+  /* These are touch devices, enable larger touch targets */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Remove hover states that don't work on touch */
+  nav ul li:hover {
+    color: inherit;
+  }
+
+  /* Enhance active/focus states instead */
+  nav ul li:active,
+  nav ul li:focus {
+    color: #3b82f6;
+  }
+}
+
+/* 15. POINTER DEVICE (Mouse) */
+@media (pointer: fine) {
+  /* Desktop, revert to 44px minimum */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* 16. CONNECTION QUALITY - Show different content based on connection */
+@media (prefers-reduced-data: reduce) {
+  /* Limit animations and auto-playing content */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  video {
+    display: none;
+  }
+}
+
+/* 17. ACCESSIBILITY - High contrast mode */
+@media (prefers-contrast: more) {
+  .signup,
+  .get-started,
+  .big-signup {
+    border: 2px solid #fff;
+    font-weight: bold;
+  }
+
+  body {
+    color: #fff;
+  }
+}
+
+/* 18. KEYBOARD VISIBLE - Adjust layout when mobile keyboard is shown */
+@supports (height: 100dvh) {
+  /* 100dvh = Dynamic Viewport Height (accounts for mobile keyboard) */
+  .hero {
+    min-height: 100dvh;
+  }
+}
+
+/* 19. SCROLLBAR STYLING - For desktop, no-op on mobile */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* 20. INPUT PLACEHOLDER - Improve visibility */
+::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+::-ms-input-placeholder {
+  color: #888;
+}
+
+/* =====================================================
+   TESTING CLASSES (add to HTML elements to test)
+   ===================================================== */
+
+/* .test-mobile - Force mobile layout on desktop */
+@media (min-width: 768px) {
+  .test-mobile {
+    max-width: 480px !important;
+  }
+}
+
+/* .test-landscape - Force landscape viewport */
+@media (min-width: 768px) {
+  .test-landscape {
+    width: 640px;
+    height: 360px;
+  }
+}
+
+/* ===================================================== */

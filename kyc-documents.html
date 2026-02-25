@@ -333,6 +333,162 @@ input[type="file"]{
     background: #475569;
 }
 
+/* Camera Button */
+.camera-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: #0f172a;
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.camera-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #60a5fa;
+}
+
+.camera-btn span {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.camera-btn p {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Camera Modal */
+.camera-modal {
+    max-width: 600px;
+    text-align: center;
+}
+
+.camera-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+#cameraStream {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.face-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 250px;
+    border: 3px solid #3b82f6;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.camera-instruction {
+    color: #94a3b8;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+/* Verification Steps */
+.verification-step {
+    display: none;
+}
+
+.verification-step.active {
+    display: block;
+}
+
+/* Processing Animation */
+.processing-animation {
+    margin: 30px auto;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border: 4px solid #334155;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.processing-text {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* Success/Error States */
+.success-icon, .error-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 20px auto;
+}
+
+.success-icon {
+    background: #065f46;
+    color: #34d399;
+}
+
+.error-icon {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.success-text, .error-text {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Face Verified Badge */
+.face-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #065f46;
+    color: #34d399;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
 @media(max-width:768px){
     .container{
         margin:30px 15px;
@@ -350,6 +506,40 @@ input[type="file"]{
         flex-direction: column;
     }
 }
+
+/* Trade Dropdown */
+.trade-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #111827;
+    border-radius: 8px;
+    min-width: 150px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    margin-top: 10px;
+}
+
+.trade-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.trade-dropdown a:hover {
+    background-color: #1f2937;
+}
+
+#tradeBtn {
+    position: relative;
+}
+
+.trade-dropdown.show {
+    display: block;
+}
 </style>
 </head>
 
@@ -365,11 +555,17 @@ input[type="file"]{
     <nav>
         <ul>
             <li onclick="window.location.href='market.html'">Market</li>
-            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li id="tradeBtn" onclick="toggleTradeDropdown(event)">
+                Trade ▾
+                <div class="trade-dropdown" id="tradeDropdown">
+                    <a href="market.html">P2P</a>
+                    <a href="spot.html">Spot Trading</a>
+                </div>
+            </li>
             <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
-            <li>Crypto Currency</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li onclick="window.location.href='market.html'">Crypto Currency</li>
+            <li onclick="window.location.href='about.html'">About</li>
+            <li onclick="window.location.href='contact.html'">Contact</li>
         </ul>
     </nav>
 
@@ -413,12 +609,12 @@ input[type="file"]{
         </div>
 
         <div class="file-input-wrapper">
-            <label for="frontId" class="file-label">
+            <label for="frontId" class="file-label" onclick="event.stopPropagation()">
                 <span>📤</span>
                 <p>Click to upload or drag and drop</p>
                 <p style="font-size: 12px; opacity: 0.7;">JPG, PNG or PDF (Max 10MB)</p>
             </label>
-            <input type="file" id="frontId" name="frontId" accept="image/*,.pdf" required>
+            <input type="file" id="frontId" name="frontId" accept="image/*,.pdf" required onclick="event.stopPropagation()">
             <div class="file-name" id="frontIdName"></div>
         </div>
     </div>
@@ -439,42 +635,88 @@ input[type="file"]{
         </div>
 
         <div class="file-input-wrapper">
-            <label for="backId" class="file-label">
+            <label for="backId" class="file-label" onclick="event.stopPropagation()">
                 <span>📤</span>
                 <p>Click to upload or drag and drop</p>
                 <p style="font-size: 12px; opacity: 0.7;">JPG, PNG or PDF (Max 10MB)</p>
             </label>
-            <input type="file" id="backId" name="backId" accept="image/*,.pdf" required>
+            <input type="file" id="backId" name="backId" accept="image/*,.pdf" required onclick="event.stopPropagation()">
             <div class="file-name" id="backIdName"></div>
         </div>
     </div>
 
-    <!-- Selfie Upload -->
+    <!-- Face Verification - Camera Based (SumSub Style) -->
     <div class="upload-section">
-        <h2><span class="document-icon">🤳</span> Selfie / Face Verification</h2>
+        <h2><span class="document-icon">🤳</span> Face Verification</h2>
         
         <div class="upload-instructions">
-            <p><strong>Upload a recent selfie for facial verification:</strong></p>
+            <p><strong>Complete face verification using your camera:</strong></p>
             <ul>
-                <li>Take a clear photo of your face looking straight at the camera</li>
-                <li>Good lighting - face should be clearly visible</li>
-                <li>Remove sunglasses and avoid shadows on face</li>
-                <li>Recent photo (taken within the last 3 months)</li>
-                <li>Must clearly match your ID document</li>
-                <li>Accepted formats: JPG, PNG</li>
-                <li>Maximum file size: 10MB</li>
+                <li>You will be asked to take a selfie video using your device camera</li>
+                <li>Position your face within the frame as instructed</li>
+                <li>Good lighting - your face should be clearly visible</li>
+                <li>Remove sunglasses, hats, or anything that covers your face</li>
+                <li>Follow the on-screen instructions during verification</li>
+                <li>The system will verify that you are a real person and match your ID</li>
             </ul>
         </div>
 
         <div class="file-input-wrapper">
-            <label for="selfie" class="file-label">
+            <button type="button" id="startFaceVerificationBtn" class="camera-btn" onclick="startFaceVerification()">
                 <span>📷</span>
-                <p>Click to upload or drag and drop</p>
-                <p style="font-size: 12px; opacity: 0.7;">JPG or PNG (Max 10MB)</p>
-            </label>
-            <input type="file" id="selfie" name="selfie" accept="image/*" required>
-            <div class="file-name" id="selfieName"></div>
+                <p>Start Face Verification</p>
+            </button>
         </div>
+
+        <!-- Face Verification Modal -->
+        <div id="faceVerificationModal" class="modal">
+            <div class="modal-content camera-modal">
+                <span class="close-modal" onclick="closeFaceVerification()">&times;</span>
+                <h2>Face Verification</h2>
+                
+                <div id="verificationSteps">
+                    <!-- Step 1: Camera Preview -->
+                    <div id="cameraStep" class="verification-step active">
+                        <div class="camera-container">
+                            <video id="cameraStream" autoplay playsinline></video>
+                            <canvas id="captureCanvas" style="display:none;"></canvas>
+                            <div id="cameraOverlay" class="camera-overlay">
+                                <div class="face-frame"></div>
+                            </div>
+                        </div>
+                        <p class="camera-instruction">Position your face within the frame</p>
+                        <button class="btn-submit" onclick="captureFace()">Capture & Verify</button>
+                    </div>
+
+                    <!-- Step 2: Processing -->
+                    <div id="processingStep" class="verification-step">
+                        <div class="processing-animation">
+                            <div class="spinner"></div>
+                        </div>
+                        <p>Verifying your face...</p>
+                        <p class="processing-text">Please wait while we verify your identity</p>
+                    </div>
+
+                    <!-- Step 3: Success -->
+                    <div id="successStep" class="verification-step">
+                        <div class="success-icon">✓</div>
+                        <p>Face Verification Complete!</p>
+                        <p class="success-text">Your face has been successfully verified</p>
+                        <button class="btn-submit" onclick="closeFaceVerification()">Continue</button>
+                    </div>
+
+                    <!-- Step 4: Error -->
+                    <div id="errorStep" class="verification-step">
+                        <div class="error-icon">✕</div>
+                        <p>Verification Failed</p>
+                        <p id="errorMessage" class="error-text">Please try again</p>
+                        <button class="btn-submit" onclick="retryFaceVerification()">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="file-name" id="faceVerificationStatus"></div>
     </div>
 
     <!-- Action Buttons -->
@@ -497,7 +739,7 @@ input[type="file"]{
         <p>
             ✓ Front ID: <span id="frontIdStatus">Ready</span><br>
             ✓ Back ID: <span id="backIdStatus">Ready</span><br>
-            ✓ Selfie: <span id="selfieStatus">Ready</span>
+            ✓ Face Verification: <span id="faceStatus">Ready</span>
         </p>
 
         <p style="color: #f87171; font-size: 14px;">
@@ -534,20 +776,150 @@ document.getElementById('selfie').addEventListener('change', function(e){
     }
 });
 
+// Face Verification Variables
+let mediaStream = null;
+let faceVerified = false;
+
+// Start Face Verification
+async function startFaceVerification() {
+    const modal = document.getElementById('faceVerificationModal');
+    modal.style.display = 'block';
+    
+    // Show camera step
+    showVerificationStep('cameraStep');
+    
+    // Request camera access
+    try {
+        mediaStream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: 'user', // Use front camera
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
+            }
+        });
+        
+        const videoElement = document.getElementById('cameraStream');
+        videoElement.srcObject = mediaStream;
+        
+    } catch (error) {
+        console.error('Error accessing camera:', error);
+        showVerificationError('Unable to access camera. Please ensure camera permissions are granted.');
+    }
+}
+
+// Capture Face
+function captureFace() {
+    const videoElement = document.getElementById('cameraStream');
+    const canvas = document.getElementById('captureCanvas');
+    
+    // Set canvas dimensions to match video
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    
+    // Draw video frame to canvas
+    const context = canvas.getContext('2d');
+    context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+    
+    // Get image data for verification
+    const imageData = canvas.toDataURL('image/jpeg', 0.9);
+    
+    // Show processing step
+    showVerificationStep('processingStep');
+    
+    // Simulate face verification process
+    performFaceVerification(imageData);
+}
+
+// Perform Face Verification (Simulated SumSub-style)
+function performFaceVerification(imageData) {
+    // In a real implementation, this would send the image to a backend API
+    // like SumSub for verification. Here we simulate the process.
+    
+    setTimeout(() => {
+        // Simulate successful verification (in real app, this would be API response)
+        const verificationSuccess = true;
+        
+        if (verificationSuccess) {
+            faceVerified = true;
+            
+            // Update UI
+            const statusElement = document.getElementById('faceVerificationStatus');
+            statusElement.innerHTML = '<span style="color: #34d399;">✓ Face verification completed</span>';
+            
+            // Update button
+            const btn = document.getElementById('startFaceVerificationBtn');
+            btn.innerHTML = '<span>✓</span><p>Verification Complete</p>';
+            btn.style.borderColor = '#34d399';
+            btn.style.background = 'rgba(52, 211, 153, 0.1)';
+            btn.disabled = true;
+            btn.onclick = null;
+            
+            // Show success step
+            showVerificationStep('successStep');
+            
+            // Stop camera
+            stopCamera();
+            
+        } else {
+            showVerificationError('Face verification failed. Please try again with better lighting.');
+        }
+    }, 3000); // Simulate 3 second processing time
+}
+
+// Show Verification Step
+function showVerificationStep(stepId) {
+    const steps = document.querySelectorAll('.verification-step');
+    steps.forEach(step => step.classList.remove('active'));
+    
+    document.getElementById(stepId).classList.add('active');
+}
+
+// Show Verification Error
+function showVerificationError(message) {
+    document.getElementById('errorMessage').textContent = message;
+    showVerificationStep('errorStep');
+    stopCamera();
+}
+
+// Retry Face Verification
+function retryFaceVerification() {
+    startFaceVerification();
+}
+
+// Close Face Verification
+function closeFaceVerification() {
+    const modal = document.getElementById('faceVerificationModal');
+    modal.style.display = 'none';
+    stopCamera();
+}
+
+// Stop Camera Stream
+function stopCamera() {
+    if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+    }
+}
+
 function reviewAndSubmit(){
     // Validate all files are uploaded
     const frontId = document.getElementById('frontId').files[0];
     const backId = document.getElementById('backId').files[0];
-    const selfie = document.getElementById('selfie').files[0];
 
-    if(!frontId || !backId || !selfie){
-        alert('Please upload all three documents (Front ID, Back ID, and Selfie)');
+    if(!frontId || !backId){
+        alert('Please upload both front and back ID documents');
+        return;
+    }
+    
+    // Check if face verification is completed
+    if(!faceVerified){
+        alert('Please complete face verification before submitting');
         return;
     }
 
     // Validate file sizes (10MB max)
     const maxSize = 10 * 1024 * 1024; // 10MB in bytes
-    if(frontId.size > maxSize || backId.size > maxSize || selfie.size > maxSize){
+    if(frontId.size > maxSize || backId.size > maxSize){
         alert('One or more files exceed the 10MB size limit');
         return;
     }
@@ -561,6 +933,17 @@ function reviewAndSubmit(){
     `;
 
     document.getElementById('reviewInfo').innerHTML = reviewInfo;
+    
+    // Update face verification status
+    const faceStatusEl = document.getElementById('faceStatus');
+    if(faceVerified){
+        faceStatusEl.textContent = '✓ Verified';
+        faceStatusEl.style.color = '#34d399';
+    } else {
+        faceStatusEl.textContent = 'Not Completed';
+        faceStatusEl.style.color = '#fca5a5';
+    }
+    
     document.getElementById('reviewModal').style.display = 'block';
 }
 
@@ -613,6 +996,17 @@ window.addEventListener('load', function(){
         window.location.href = 'kyc-form.html';
     }
 });
+
+
+function toggleTradeDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('tradeDropdown').classList.toggle('show');
+}
+
+window.addEventListener('click', function() {
+    document.getElementById('tradeDropdown').classList.remove('show');
+});
+
 </script>
 
 </body>

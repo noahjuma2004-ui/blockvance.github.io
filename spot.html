@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spot Trading - Blocvance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 80px;
+    background:#000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    color:#4c8bf5;
+}
+
+.nav-links a{
+    margin:0 15px;
+    text-decoration:none;
+    color:white;
+    font-weight:400;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#4c8bf5;
+}
+
+/* MAIN LAYOUT */
+.container{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap:30px;
+    padding:40px 80px;
+}
+
+/* CHART AREA */
+.chart-section{
+    background:#0c0c0c;
+    border:1px solid #1c1c1c;
+    border-radius:12px;
+    padding:25px;
+}
+
+.chart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.pair{
+    font-size:22px;
+    font-weight:600;
+}
+
+.price{
+    font-size:20px;
+    color:#4c8bf5;
+}
+
+.chart-box{
+    height:400px;
+    background:#050505;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#555;
+}
+
+/* TRADE PANEL */
+.trade-panel{
+    background:#0c0c0c;
+    border:1px solid #1c1c1c;
+    border-radius:12px;
+    padding:25px;
+}
+
+.trade-tabs{
+    display:flex;
+    margin-bottom:20px;
+}
+
+.trade-tabs button{
+    flex:1;
+    padding:12px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    background:#111;
+    color:white;
+    transition:0.3s;
+}
+
+.trade-tabs button.active{
+    background:#4c8bf5;
+}
+
+.trade-panel label{
+    font-size:14px;
+    margin-top:10px;
+    display:block;
+}
+
+.trade-panel input{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:15px;
+    background:#111;
+    border:1px solid #1c1c1c;
+    color:white;
+    border-radius:8px;
+}
+
+.trade-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    background:#4c8bf5;
+    color:white;
+    transition:0.3s;
+}
+
+.trade-btn:hover{
+    background:#3a6fd8;
+}
+
+/* BOTTOM SECTION */
+.bottom-section{
+    padding:20px 80px 60px 80px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.info-box{
+    background:#0c0c0c;
+    border:1px solid #1c1c1c;
+    border-radius:12px;
+    padding:25px;
+}
+
+.info-box h3{
+    margin-bottom:15px;
+    color:#4c8bf5;
+}
+
+.info-box p{
+    margin:6px 0;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">BLOCVANCE</div>
+    <div class="nav-links">
+        <a href="market.html">Market</a>
+        <a href="#">Trade</a>
+        <a href="ai-trading.html">AI Trading</a>
+        <a href="cypto.html">Crypto Currency</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- CHART -->
+    <div class="chart-section">
+        <div class="chart-header">
+            <div class="pair">BTC/USDT</div>
+            <div class="price">$62,540</div>
+        </div>
+
+        <div class="chart-box">
+            Chart integration area (TradingView API here)
+        </div>
+    </div>
+
+    <!-- TRADE PANEL -->
+    <div class="trade-panel">
+
+        <div class="trade-tabs">
+            <button class="active">Buy</button>
+            <button>Sell</button>
+        </div>
+
+        <label>Price (USDT)</label>
+        <input type="number" placeholder="Enter price">
+
+        <label>Amount (BTC)</label>
+        <input type="number" placeholder="Enter amount">
+
+        <label>Total</label>
+        <input type="number" placeholder="Total">
+
+        <button class="trade-btn">Place Order</button>
+
+    </div>
+
+</div>
+
+<!-- ORDER BOOK + TRADES -->
+<div class="bottom-section">
+
+    <div class="info-box">
+        <h3>Order Book</h3>
+        <p>62,500 — 0.4 BTC</p>
+        <p>62,480 — 0.7 BTC</p>
+        <p>62,450 — 1.2 BTC</p>
+    </div>
+
+    <div class="info-box">
+        <h3>Recent Trades</h3>
+        <p>62,530 — 0.1 BTC</p>
+        <p>62,520 — 0.3 BTC</p>
+        <p>62,540 — 0.05 BTC</p>
+    </div>
+
+</div>
+
+</body>
+</html>

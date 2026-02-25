@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - Blocvance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0f;
+            color: #ffffff;
+        }
+
+        header {
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0b0b0f;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2f6df6;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #2f6df6;
+        }
+
+        .container {
+            padding: 60px 80px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: #2f6df6;
+        }
+
+        p {
+            color: #cfcfcf;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #14141c;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #1f1f2e;
+        }
+
+        .card img {
+            width: 50px;
+            margin-bottom: 15px;
+            filter: brightness(0) saturate(100%) invert(42%) sepia(98%) saturate(2382%) hue-rotate(212deg) brightness(99%) contrast(96%);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background: #1a1a24;
+            color: white;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #2f6df6;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e50c8;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-button {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: rgba(30, 30, 35, 0.85);
+            border: 1px solid #3a3a4a;
+            color: #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .faq-button:hover {
+            background-color: rgba(47, 109, 246, 0.2);
+            border-color: #2f6df6;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(47, 109, 246, 0.3);
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            padding: 15px;
+            background: rgba(20, 20, 28, 0.6);
+            border-radius: 6px;
+            border-left: 3px solid #2f6df6;
+        }
+
+        .faq-item h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            background: #14141c;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        BLOCVANCE
+        <span>Digital Trading Platform</span>
+    </div>
+
+    <nav>
+        <a href="blockwave.html">Home</a>
+        <a href="market.html">Market</a>
+        <div style="display:inline-block; position:relative;">
+            <a href="#" id="tradeLink">Trade ▾</a>
+            <div class="trade-dropdown" id="tradeDropdown" style="display:none; position:absolute; background:#111827; border-radius:8px; min-width:150px; box-shadow:0 5px 15px rgba(0,0,0,0.5); z-index:1000; margin-top:10px;">
+                <a href="market.html" style="display:block; padding:12px 20px; color:white; text-decoration:none;">P2P</a>
+                <a href="spot.html" style="display:block; padding:12px 20px; color:white; text-decoration:none;">Spot Trading</a>
+            </div>
+        </div>
+        <a href="ai-trading.html">AI Trading</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <h1>Contact Blocvance Support</h1>
+    <p>We are here to help you trade with confidence. Choose how you'd like to get support below.</p>
+
+    <!-- Submit Ticket Section -->
+    <h2>Submit a Ticket</h2>
+
+    <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Ticket Logo">
+        <p>
+            Need help with your account, transactions, or AI trading? Submit a support ticket and our
+            crypto specialists will respond within 24 hours.
+        </p>
+    </div>
+
+    <!-- Ticket Form -->
+    <div class="card">
+        <form id="ticketForm">
+            <div class="form-group">
+                <input type="text" placeholder="Full Name" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-group">
+                <select title="Select the type of issue you need help with" required>
+                    <option value="">Select Issue Type</option>
+                    <option>Account Issue</option>
+                    <option>Deposit / Withdrawal</option>
+                    <option>Trading Error</option>
+                    <option>Security Concern</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <textarea placeholder="Describe your issue in detail..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit Ticket</button>
+        </form>
+    </div>
+
+    <!-- Success Message (Hidden by default) -->
+    <div id="successMessage" class="card" style="display: none; background: linear-gradient(135deg, #1a5f2a 0%, #0d3d18 100%); border: 2px solid #2ecc71;">
+        <div style="text-align: center; padding: 20px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/7518/7518748.png" alt="Success" style="width: 80px; margin-bottom: 20px; filter: brightness(0) saturate(100%) invert(65%) sepia(58%) saturate(356%) hue-rotate(82deg) brightness(94%) contrast(86%);">
+            <h2 style="color: #2ecc71; margin-bottom: 15px;">Request Submitted Successfully!</h2>
+            <p style="color: #ffffff; font-size: 16px; margin-bottom: 10px;">Thank you for contacting Blocvance Support.</p>
+            <p style="color: #b8e6b8; font-size: 14px;">Our team will contact you for detailed information within 24 hours.</p>
+            <button type="button" onclick="resetForm()" style="margin-top: 20px; background-color: #2ecc71; color: #0b0b0f; font-weight: bold;">Submit Another Ticket</button>
+        </div>
+    </div>
+
+    <!-- Browse FAQs -->
+    <h2>Browse FAQs (Instant Answers)</h2>
+
+    <div class="card">
+
+        <div class="faq-item">
+            <button class="faq-button">1. How do I create a Blocvance account?</button>
+            <div class="faq-answer">
+                <p>
+                    Click the Sign Up button on the homepage, enter your email, create a secure password,
+                    verify your identity through KYC verification, and start trading immediately.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-button">2. How long do withdrawals take?</button>
+            <div class="faq-answer">
+                <p>
+                    Crypto withdrawals typically process within 10–30 minutes depending on network congestion.
+                    Fiat withdrawals may take 1–3 business days depending on your bank.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-button">3. Is AI Trading safe on Blocvance?</button>
+            <div class="faq-answer">
+                <p>
+                    Our AI Trading system uses risk management algorithms and market analytics. However,
+                    all trading involves risk. We recommend setting stop-loss levels and reviewing your strategy.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-button">4. How do I secure my account?</button>
+            <div class="faq-answer">
+                <p>
+                    Enable Two-Factor Authentication (2FA), use a strong password, avoid public Wi-Fi
+                    when trading, and never share your private keys or login credentials.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-button">5. What fees does Blocvance charge?</button>
+            <div class="faq-answer">
+                <p>
+                    Trading fees range between 0.1% – 0.25% depending on your trading volume.
+                    Deposit fees are free for crypto, while withdrawal fees depend on blockchain network costs.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Email Support Section -->
+    <h2>Email Support</h2>
+
+    <div class="card">
+        <p>
+            Prefer email? Draft your support request and send it to:
+            <strong>support@blocvance.com</strong>
+        </p>
+
+        <p>
+            When emailing, include:
+            - Your registered email address  
+            - Transaction ID (if applicable)  
+            - Screenshots of the issue  
+            - Detailed description of the problem  
+        </p>
+
+        <p>
+            Our support team typically responds within 12–24 hours.
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Blocvance. All Rights Reserved.
+</footer>
+
+<script>
+document.getElementById('tradeLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    var dropdown = document.getElementById('tradeDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    var dropdown = document.getElementById('tradeDropdown');
+    var tradeLink = document.getElementById('tradeLink');
+    if (tradeLink && !tradeLink.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+    }
+});
+
+// Handle ticket form submission
+document.getElementById('ticketForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form elements
+    const form = this;
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Validate all required fields
+    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.style.border = '2px solid #e74c3c';
+        } else {
+            input.style.border = 'none';
+        }
+    });
+    
+    if (isValid) {
+        // Hide the form
+        form.style.display = 'none';
+        
+        // Show success message
+        successMessage.style.display = 'block';
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
+
+// Function to reset form and show it again
+function resetForm() {
+    const form = document.getElementById('ticketForm');
+    const successMessage = document.getElementById('successMessage');
+    
+    // Reset form values
+    form.reset();
+    
+    // Hide success message and show form
+    successMessage.style.display = 'none';
+    form.style.display = 'block';
+    
+    // Scroll to form
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+
+</body>
+</html>

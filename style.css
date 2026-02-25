@@ -2,12 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
     background: #000;
     color: white;
+    line-height: 1.6;
 }
 
 /* HEADER */
@@ -15,16 +20,29 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
+    padding: 20px 20px;
+    flex-wrap: wrap;
+    background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo h2 {
     color: #3b82f6;
+    font-size: 1.5rem;
 }
 
 .logo span {
-    font-size: 11px;
+    font-size: 0.7rem;
     color: #aaa;
+    display: block;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul {
@@ -32,17 +50,25 @@ nav ul {
     gap: 30px;
     list-style: none;
     color: #ccc;
+    flex-wrap: wrap;
 }
 
-nav ul li:hover {
-    color: #3b82f6;
+nav ul li {
+    font-size: 1rem;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .nav-buttons {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-left: auto;
+}
+
+.lang {
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .login {
@@ -50,6 +76,12 @@ nav ul li:hover {
     border: none;
     color: white;
     cursor: pointer;
+    font-size: 1rem;
+    padding: 8px 12px;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
 }
 
 .signup {
@@ -59,6 +91,17 @@ nav ul li:hover {
     border-radius: 8px;
     color: white;
     cursor: pointer;
+    font-size: 1rem;
+    min-height: 44px;
+    transition: 0.3s ease;
+}
+
+.signup:hover {
+    background: #2563eb;
+}
+
+.signup:active {
+    transform: scale(0.98);
 }
 
 /* HERO */
@@ -66,14 +109,21 @@ nav ul li:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 60px;
+    padding: 40px 20px;
     min-height: 90vh;
+    gap: 20px;
 }
 
 /* LEFT SIDE */
+.left {
+    flex: 1;
+}
+
 .left h1 {
-    font-size: 70px;
+    font-size: clamp(2rem, 8vw, 70px);
     line-height: 1.1;
+    margin-bottom: 20px;
+    word-spacing: 0.1em;
 }
 
 .left span {
@@ -83,18 +133,29 @@ nav ul li:hover {
 .left p {
     margin-top: 20px;
     color: #aaa;
-    font-size: 20px;
+    font-size: clamp(1rem, 3vw, 20px);
 }
 
 .big-signup {
     margin-top: 30px;
     padding: 15px 30px;
-    font-size: 18px;
+    font-size: 1rem;
     background: #3b82f6;
     border: none;
     border-radius: 10px;
     color: white;
     cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
+    transition: 0.3s ease;
+}
+
+.big-signup:hover {
+    background: #2563eb;
+}
+
+.big-signup:active {
+    transform: scale(0.98);
 }
 
 /* RIGHT SIDE */
@@ -102,6 +163,7 @@ nav ul li:hover {
     position: relative;
     width: 600px;
     height: 600px;
+    flex-shrink: 0;
 }
 
 /* Glow Effect */
@@ -125,13 +187,10 @@ nav ul li:hover {
 }
 
 .why-choose h2 {
-    font-size: 45px;
+    font-size: clamp(1.5rem, 5vw, 45px);
     font-weight: 700;
     color: white;
     margin: 0 auto 20px;
-
-    
-    
 }
 
 /* Ready to Start Section */
@@ -142,14 +201,14 @@ nav ul li:hover {
 }
 
 .ready-to-start h2 {
-    font-size: 55px;
+    font-size: clamp(1.8rem, 6vw, 55px);
     font-weight: 700;
     color: white;
     margin-bottom: 20px;
 }
 
 .ready-to-start p {
-    font-size: 18px;
+    font-size: clamp(1rem, 2vw, 18px);
     color: #aaa;
 }
 
@@ -157,17 +216,21 @@ nav ul li:hover {
     margin-top: 25px;
     background: #3b82f6;
     border: none;
-    padding: 10px 18px;
+    padding: 12px 24px;
     border-radius: 8px;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    min-height: 44px;
+    transition: 0.3s ease;
+}
 
-    /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.get-started:hover {
+    background: #2563eb;
+}
+
+.get-started:active {
+    transform: scale(0.98);
 }
 
 /* ANNOUNCEMENT BAR */
@@ -218,7 +281,6 @@ nav ul li:hover {
   background-color: #000;
   padding: 70px 0 30px;
   color: #aaa;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-wrapper {
@@ -294,4 +356,269 @@ nav ul li:hover {
   color: #6f86a6;
   font-size: 18px;
 }
+
+/* ======================== MOBILE RESPONSIVE DESIGN ======================== */
+
+/* Extra Small Devices (phones in portrait) - 320px and up */
+@media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 15px 10px;
+    gap: 10px;
+  }
+
+  .logo h2 {
+    font-size: 1.3rem;
+  }
+
+  .logo span {
+    font-size: 0.65rem;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  nav ul {
+    gap: 15px;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .nav-buttons {
+    margin-left: 0;
+    gap: 10px;
+  }
+
+  .lang {
+    display: none;
+  }
+
+  .login {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+
+  .signup {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 20px 15px;
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .left h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .left p {
+    font-size: 0.95rem;
+  }
+
+  .big-signup {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .right {
+    display: none;
+  }
+
+  /* Sections */
+  .why-choose {
+    padding: 40px 15px;
+  }
+
+  .why-choose h2 {
+    font-size: 1.5rem;
+  }
+
+  .ready-to-start {
+    padding: 40px 15px;
+  }
+
+  .ready-to-start h2 {
+    font-size: 1.6rem;
+  }
+
+  .ready-to-start p {
+    font-size: 0.95rem;
+  }
+
+  .get-started {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Announcement */
+  .announcement-content {
+    width: 95%;
+  }
+
+  .announcement-text {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Footer */
+  .footer-wrapper {
+    width: 95%;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-col {
+    width: 100%;
+  }
+
+  .footer-col h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-col ul li a {
+    font-size: 0.95rem;
+  }
+
+  .brand h2 {
+    font-size: 1.3rem;
+  }
+
+  .brand .desc {
+    font-size: 0.95rem;
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Devices (landscape phones, tablets) - 768px and up */
+@media (min-width: 768px) and (max-width: 1024px) {
+  header {
+    padding: 15px 30px;
+  }
+
+  nav ul {
+    gap: 20px;
+  }
+
+  .hero {
+    padding: 40px 30px;
+  }
+
+  .left h1 {
+    font-size: 2.5rem;
+  }
+
+  .left p {
+    font-size: 1.1rem;
+  }
+
+  .right {
+    width: 400px;
+    height: 400px;
+  }
+
+  .why-choose h2 {
+    font-size: 2rem;
+  }
+
+  .ready-to-start h2 {
+    font-size: 2.2rem;
+  }
+
+  .footer-wrapper {
+    width: 90%;
+  }
+
+  .footer-col {
+    width: 45%;
+  }
+}
+
+/* Form Inputs Optimization for Mobile */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+}
+
+/* Touch-Friendly Elements */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Trade Dropdown Mobile */
+.trade-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 150px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.trade-dropdown a {
+  padding: 10px 20px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.2s;
+  display: block;
+}
+
+.trade-dropdown a:hover {
+  background: #222;
+  color: #3b82f6;
+}
+
+@media (max-width: 767px) {
+  .trade-dropdown {
+    position: relative;
+    background: none;
+    border: none;
+    min-width: auto;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .trade-dropdown a {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
 }

@@ -287,6 +287,40 @@ h1 {
         font-size: 24px;
     }
 }
+
+/* Trade Dropdown */
+.trade-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #111827;
+    border-radius: 8px;
+    min-width: 150px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    margin-top: 10px;
+}
+
+.trade-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.trade-dropdown a:hover {
+    background-color: #1f2937;
+}
+
+#tradeBtn {
+    position: relative;
+}
+
+.trade-dropdown.show {
+    display: block;
+}
 </style>
 </head>
 
@@ -302,11 +336,17 @@ h1 {
     <nav>
         <ul>
             <li onclick="window.location.href='market.html'">Market</li>
-            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li id="tradeBtn" onclick="toggleTradeDropdown(event)">
+                Trade ▾
+                <div class="trade-dropdown" id="tradeDropdown">
+                    <a href="market.html">P2P</a>
+                    <a href="spot.html">Spot Trading</a>
+                </div>
+            </li>
             <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
-            <li>Crypto Currency</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li onclick="window.location.href='market.html'">Crypto Currency</li>
+            <li onclick="window.location.href='about.html'">About</li>
+            <li onclick="window.location.href='contact.html'">Contact</li>
         </ul>
     </nav>
 
@@ -499,7 +539,7 @@ function retryVerification() {
 
 function goToDashboard() {
     if (localStorage.getItem('loggedIn')) {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'http://localhost:3000/dashboard.html';
     } else {
         window.location.href = 'login.html';
     }
@@ -508,6 +548,15 @@ function goToDashboard() {
 function goHome() {
     window.location.href = 'blockwave.html';
 }
+
+function toggleTradeDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('tradeDropdown').classList.toggle('show');
+}
+
+window.addEventListener('click', function() {
+    document.getElementById('tradeDropdown').classList.remove('show');
+});
 
 // Check verification submission on page load
 window.addEventListener('load', function() {
@@ -521,6 +570,23 @@ window.addEventListener('load', function() {
 
     // Start verification process
     startVerification();
+});
+
+// Make all elements containing "contact" clickable to navigate to contact.html
+document.addEventListener('DOMContentLoaded', function() {
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(function(element) {
+        if (element.onclick || element.tagName === 'A' || element.tagName === 'BUTTON') {
+            return;
+        }
+        
+        if (element.textContent && element.textContent.toLowerCase().includes('contact')) {
+            element.style.cursor = 'pointer';
+            element.addEventListener('click', function() {
+                window.location.href = 'contact.html';
+            });
+        }
+    });
 });
 </script>
 

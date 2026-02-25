@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Create your Blockvance Trading Account">
+    <meta name="theme-color" content="#000000">
     <title>Sign Up - Blockvance</title>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -133,6 +136,40 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        /* Trade Dropdown */
+        .trade-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #111827;
+            border-radius: 8px;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            margin-top: 10px;
+        }
+
+        .trade-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .trade-dropdown a:hover {
+            background-color: #1f2937;
+        }
+
+        #tradeBtn {
+            position: relative;
+        }
+
+        .trade-dropdown.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -146,18 +183,24 @@
 
     <nav>
         <ul>
-            <li>Market</li>
-            <li>Trade ▾</li>
-            <li>AI Trading</li>
-            <li>Crypto Currency</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li id="tradeBtn" onclick="toggleTradeDropdown(event)">
+                Trade ▾
+                <div class="trade-dropdown" id="tradeDropdown">
+                    <a href="market.html">P2P</a>
+                    <a href="spot.html">Spot Trading</a>
+                </div>
+            </li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li onclick="window.location.href='market.html'">Crypto Currency</li>
+            <li onclick="window.location.href='blockwave.html'">About</li>
+            <li onclick="window.location.href='contact.html'">Contact</li>
         </ul>
     </nav>
 
     <div class="nav-buttons">
         <span class="lang">🌐 English</span>
-        <button class="login">Login</button>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
         <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
     </div>
 </header>
@@ -236,11 +279,28 @@
         localStorage.setItem('username', email.split('@')[0]);
         localStorage.setItem('useremail', email);
         
+        // Also store in sessionStorage as backup (helps prevent auto-logout)
+        sessionStorage.setItem('userSession', JSON.stringify({
+            username: email.split('@')[0],
+            useremail: email,
+            loginTime: Date.now()
+        }));
+        sessionStorage.setItem('sessionId', 'active');
+        
         // Show success message
         alert('Account created successfully! Welcome to Blockvance.');
         
         // Redirect to dashboard page (auto-login after signup)
-        window.location.href = 'dashboard.html';
+        window.location.href = 'http://localhost:3000/dashboard.html';
+    });
+
+    function toggleTradeDropdown(event) {
+        event.stopPropagation();
+        document.getElementById('tradeDropdown').classList.toggle('show');
+    }
+
+    window.addEventListener('click', function() {
+        document.getElementById('tradeDropdown').classList.remove('show');
     });
 </script>
 

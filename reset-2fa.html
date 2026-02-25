@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset 2FA - Blockvance</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .reset-2fa-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #000;
+            padding: 20px;
+        }
+
+        .reset-container {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 450px;
+            color: white;
+        }
+
+        .reset-container h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .reset-container p {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .reset-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #0a0a0a;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-group .info-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .submit-btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #333;
+        }
+
+        .step.active {
+            background-color: #3b82f6;
+        }
+
+        .step.completed {
+            background-color: #10b981;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background-color: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #10b981;
+        }
+
+        .message.error {
+            background-color: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        .demo-code {
+            background-color: #1a1a1a;
+            border: 1px dashed #3b82f6;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .demo-code span {
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Trade Dropdown */
+        .trade-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #111827;
+            border-radius: 8px;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            margin-top: 10px;
+        }
+
+        .trade-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .trade-dropdown a:hover {
+            background-color: #1f2937;
+        }
+
+        #tradeBtn {
+            position: relative;
+        }
+
+        .trade-dropdown.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">
+        <h2>BLOCVANCE</h2>
+        <span>DIGITAL TRADING PLATFORM</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li onclick="window.location.href='market.html'">Market</li>
+            <li id="tradeBtn" onclick="toggleTradeDropdown(event)">
+                Trade ▾
+                <div class="trade-dropdown" id="tradeDropdown">
+                    <a href="market.html">P2P</a>
+                    <a href="spot.html">Spot Trading</a>
+                </div>
+            </li>
+            <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
+            <li onclick="window.location.href='market.html'">Crypto Currency</li>
+            <li onclick="window.location.href='blockwave.html'">About</li>
+            <li onclick="window.location.href='contact.html'">Contact</li>
+        </ul>
+    </nav>
+
+    <div class="nav-buttons">
+        <span class="lang">🌐 English</span>
+        <button class="login" onclick="window.location.href='login.html'">Login</button>
+        <button class="signup" onclick="window.location.href='signup.html'">Sign up</button>
+    </div>
+</header>
+
+<!-- RESET 2FA PAGE -->
+<div class="reset-2fa-page">
+    <div class="reset-container">
+        <a href="login.html" class="back-link">← Back to Login</a>
+        
+        <div class="reset-icon">🔐</div>
+        
+        <h1>Reset 2FA</h1>
+        <p>Lost access to your 2FA? Reset your two-factor authentication</p>
+        
+        <div class="step-indicator">
+            <div class="step active" id="step1"></div>
+            <div class="step" id="step2"></div>
+        </div>
+        
+        <!-- Message container -->
+        <div id="messageContainer"></div>
+        
+        <!-- Step 1: Email Verification -->
+        <div id="step1Form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your registered email" required>
+            </div>
+            
+            <button type="button" class="submit-btn" onclick="requestReset()">Send Reset Code</button>
+        </div>
+        
+        <!-- Step 2: Verify & Setup New 2FA -->
+        <div id="step2Form" class="hidden">
+            <div class="form-group">
+                <label for="resetCode">Reset Code</label>
+                <input type="text" id="resetCode" name="resetCode" placeholder="Enter the 6-digit code" maxlength="6">
+                <p class="info-text">Enter the code sent to your email (check server console for demo)</p>
+            </div>
+            
+            <div class="demo-code" id="demoCodeContainer" style="display: none;">
+                <p style="margin: 0; color: #aaa; font-size: 12px;">Demo Reset Code:</p>
+                <span id="demoCode"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="newToken">New Authenticator Code</label>
+                <input type="text" id="newToken" name="newToken" placeholder="Enter code from new authenticator app" maxlength="6">
+                <p class="info-text">Enter a code from your new authenticator app to verify setup</p>
+            </div>
+            
+            <button type="button" class="submit-btn" onclick="verifyReset()">Reset 2FA</button>
+        </div>
+        
+        <p style="margin-top: 25px; font-size: 13px; color: #666;">
+            Having trouble? <a href="contact.html" style="color: #3b82f6;">Contact Support</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    let resetCodeFromServer = '';
+    
+    function showMessage(message, type) {
+        const container = document.getElementById('messageContainer');
+        container.innerHTML = `<div class="message ${type}">${message}</div>`;
+    }
+    
+    function clearMessage() {
+        document.getElementById('messageContainer').innerHTML = '';
+    }
+    
+    function updateStep(step) {
+        document.getElementById('step1').className = step >= 1 ? 'step active' : 'step';
+        document.getElementById('step2').className = step >= 2 ? 'step active' : 'step';
+        
+        if (step === 1) {
+            document.getElementById('step1Form').classList.remove('hidden');
+            document.getElementById('step2Form').classList.add('hidden');
+        } else if (step === 2) {
+            document.getElementById('step1Form').classList.add('hidden');
+            document.getElementById('step2Form').classList.remove('hidden');
+            document.getElementById('step1').classList.add('completed');
+        }
+    }
+    
+    async function requestReset() {
+        const email = document.getElementById('email').value.trim();
+        
+        if (!email) {
+            showMessage('Please enter your email address', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showMessage('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/2fa/reset-request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                resetCodeFromServer = data.demoCode;
+                showMessage(data.message, 'success');
+                
+                // Show demo code for testing
+                document.getElementById('demoCodeContainer').style.display = 'block';
+                document.getElementById('demoCode').textContent = data.demoCode;
+                
+                updateStep(2);
+            } else {
+                showMessage(data.message, 'error');
+            }
+        } catch (error) {
+            showMessage('An error occurred. Please try again.', 'error');
+            console.error('Error:', error);
+        }
+    }
+    
+    async function verifyReset() {
+        const email = document.getElementById('email').value.trim();
+        const code = document.getElementById('resetCode').value.trim();
+        const newToken = document.getElementById('newToken').value.trim();
+        
+        if (!code || !newToken) {
+            showMessage('Please fill in all fields', 'error');
+            return;
+        }
+        
+        if (code.length !== 6 || newToken.length !== 6) {
+            showMessage('Please enter 6-digit codes', 'error');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/2fa/reset-verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, code, newToken }),
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                showMessage(data.message, 'success');
+                
+                // Show success and redirect after delay
+                setTimeout(() => {
+                    alert('2FA has been reset successfully! You can now log in with your new authenticator.');
+                    window.location.href = 'login.html';
+                }, 1500);
+            } else {
+                showMessage(data.message, 'error');
+            }
+        } catch (error) {
+            showMessage('An error occurred. Please try again.', 'error');
+            console.error('Error:', error);
+        }
+    }
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    function toggleTradeDropdown(event) {
+        event.stopPropagation();
+        document.getElementById('tradeDropdown').classList.toggle('show');
+    }
+
+    window.addEventListener('click', function() {
+        document.getElementById('tradeDropdown').classList.remove('show');
+    });
+</script>
+
+</body>
+</html>

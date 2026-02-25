@@ -216,6 +216,40 @@ button:hover{
         gap: 10px;
     }
 }
+
+/* Trade Dropdown */
+.trade-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #111827;
+    border-radius: 8px;
+    min-width: 150px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    margin-top: 10px;
+}
+
+.trade-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.trade-dropdown a:hover {
+    background-color: #1f2937;
+}
+
+#tradeBtn {
+    position: relative;
+}
+
+.trade-dropdown.show {
+    display: block;
+}
 </style>
 </head>
 
@@ -231,11 +265,17 @@ button:hover{
     <nav>
         <ul>
             <li onclick="window.location.href='market.html'">Market</li>
-            <li onclick="window.location.href='trade.html'">Trade ▾</li>
+            <li id="tradeBtn" onclick="toggleTradeDropdown(event)">
+                Trade ▾
+                <div class="trade-dropdown" id="tradeDropdown">
+                    <a href="market.html">P2P</a>
+                    <a href="spot.html">Spot Trading</a>
+                </div>
+            </li>
             <li onclick="window.location.href='ai-trading.html'">AI Trading</li>
-            <li>Crypto Currency</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li onclick="window.location.href='market.html'">Crypto Currency</li>
+            <li onclick="window.location.href='about.html'">About</li>
+            <li onclick="window.location.href='contact.html'">Contact</li>
         </ul>
     </nav>
 
@@ -286,11 +326,22 @@ function startKYC(){
 function goBack(){
     // Check if user is logged in
     if(localStorage.getItem('loggedIn')){
-        window.location.href = 'dashboard.html';
+        window.location.href = 'http://localhost:3000/dashboard.html';
     } else {
         window.location.href = 'blockwave.html';
     }
 }
+
+function toggleTradeDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('tradeDropdown').classList.toggle('show');
+}
+
+window.addEventListener('click', function() {
+    document.getElementById('tradeDropdown').classList.remove('show');
+});
+
+
 </script>
 
 </body>
